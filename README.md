@@ -33,8 +33,12 @@ ssh, scp, rsync:
 
 - Ubuntu 14.04
 - warcbase HEAD
-- 
-- 
+- Apache Spark 1.5.1 
+- Spark Notebook
+  - scala-2.10.4
+  - spark-1.5.1
+  - hadoop-2.6.0
+  - cdh5.4.2
 
 ## Spark Shell
 
