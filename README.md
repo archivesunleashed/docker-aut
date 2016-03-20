@@ -14,7 +14,7 @@ The virtual machine that is built uses 2GB of RAM. Your host machine will need t
 
 ## Use
 
-1. `git clone https://github.com/web-archive-group/warcbase_workshop`
+1. `git clone https://github.com/web-archive-group/warcbase_workshop_vagrant.git`
 2. `cd warcbase_workshop_vagrant`
 3. `vagrant up`
 
