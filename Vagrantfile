@@ -26,6 +26,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, inline: "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile", :privileged =>false
   config.vm.provision :shell, path: "./scripts/bootstrap.sh"
   config.vm.provision :shell, path: "./scripts/warcbase.sh", :privileged =>false
-  config.vm.provision :shell, path: "./scripts/post.sh", :privileged =>true
 
 end
