@@ -91,6 +91,18 @@ import org.warcbase.spark.rdd.RecordRDD._
 r: Array[(String, Int)] = Array((communist-party.ca,39), (www.gca.ca,39), (greenparty.ca,39), (www.davidsuzuki.org,34), (westernblockparty.com,26), (www.nosharia.com,24), (partimarijuana.org,22), (www.ccsd.ca,22), (canadianactionparty.ca,22), (www.nawl.ca,19))
 ```
 
+## Resources
+
+This build also includes the [warcbase resources](https://github.com/lintool/warcbase-resources) repository, which contains NER libraries as well as sample data from the University of Toronto (located in `/home/vagrant/project/warcbase-resources/Sample-Data/`).
+
+The ARC and WARC file are drawn from the [Canadian Political Parties & Political Interest Groups Archive-It Collection](https://archive-it.org/collections/227), collected by the University of Toronto. We are grateful that they've provided this material to us.
+
+If you use their material, please cite it along the following lines:
+
+- University of Toronto Libraries, Canadian Political Parties and Interest Groups, Archive-It Collection 227, Canadian Action Party, http://wayback.archive-it.org/227/20051004191340/http://canadianactionparty.ca/Default2.asp
+
+You can find more information about this collection at [WebArchives.ca](http://webarchives.ca/). 
+
 ## Authors
 
 - [Nick Ruest](https://github.com/ruebot)
