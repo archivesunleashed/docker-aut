@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty64"
 
-  config.vm.network :forwarded_port, guest: 8080, host: 9000 # Spark Notebook
+  config.vm.network :forwarded_port, guest: 9000, host: 9000 # Spark Notebook
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", '2056']

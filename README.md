@@ -40,10 +40,22 @@ ssh, scp, rsync:
   - hadoop-2.6.0
   - cdh5.4.2
 
+## Spark Notebook
+
+To run spark notebook:
+
+* `vagrant ssh`
+* `cd project/spark-notebook-0.6.2-SNAPSHOT-scala-2.10.4-spark-1.5.1-hadoop-2.6.0-cdh5.4.2/bin`
+* `./spark-notebook -Dhttp.port=9000`
+* Visit http://127.0.0.1:9000/
+
+![Spark Notebook](https://cloud.githubusercontent.com/assets/218561/14062458/f8c6a842-f375-11e5-991b-c5d6a80c6f1a.png)
+
 ## Spark Shell
 
 To run spark shell:
 
+* `vagrant ssh`
 * `cd project/spark-1.5.1-bin-hadoop2.6/bin`
 * `./spark-shell --jars /home/vagrant/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar`
 
