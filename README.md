@@ -60,7 +60,7 @@ To run spark notebook, type the following:
 
 * `vagrant ssh`
 * `cd project/spark-notebook-0.6.2-SNAPSHOT-scala-2.10.4-spark-1.5.1-hadoop-2.6.0-cdh5.4.2/bin`
-* `./spark-notebook -Dhttp.port=9000`
+* `./spark-notebook -Dhttp.port=9000 -J-Xms1024m`
 * Visit http://127.0.0.1:9000/ in your web browser.
 
 ![Spark Notebook](https://cloud.githubusercontent.com/assets/218561/14062458/f8c6a842-f375-11e5-991b-c5d6a80c6f1a.png)
