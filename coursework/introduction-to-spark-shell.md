@@ -116,4 +116,48 @@ You should see:
 
 We have other commands, which you can find on the page [here](http://lintool.github.io/warcbase-docs/Spark-Analysis-of-Site-Link-Structure/). Start playing around with this now.
 
+Let's say you wanted to do some more substantial network analysis with this collection. We can actually generate a file format that can be loaded directly by Gephi.
+
+```
+import org.warcbase.spark.matchbox.{ExtractTopLevelDomain, ExtractLinks, RecordLoader, WriteGDF}
+import org.warcbase.spark.rdd.RecordRDD._
+
+val links = RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
+  .keepValidPages()
+  .map(r => (r.getCrawldate, ExtractLinks(r.getUrl, r.getContentString)))
+  .flatMap(r => r._2.map(f => (r._1, ExtractTopLevelDomain(f._1).replaceAll("^\\s*www\\.", ""), ExtractTopLevelDomain(f._2).replaceAll("^\\s*www\\.", ""))))
+  .filter(r => r._2 != "" && r._3 != "")
+  .countItems()
+  .filter(r => r._2 > 5)
+
+WriteGDF(links, "/home/vagrant/all-links.gdf")
+```
+
+We may return to this if we have time.
+
+## Image Analysis
+
+You may want to do work with images. The following script finds all the image URLs and displays the top 10.
+
+```
+import org.warcbase.spark.matchbox._
+import org.warcbase.spark.rdd.RecordRDD._
+
+val links = RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
+  .keepValidPages()
+  .flatMap(r => ExtractImageLinks(r.getUrl, r.getContentString))
+  .countItems()
+  .take(10) 
+```
+
+If you wanted to work with the images, you could download them from the Internet Archive. 
+
+Let's use the top-ranked example. [This link](http://web.archive.org/web/*/http://archive.org/images/star.png), for example, will show you the temporal distribution of the image. For a snapshot from September 2007, this URL would work:
+
+<http://web.archive.org/web/20070913051458/http://www.archive.org/images/star.png>
+
+To do analysis on all images, you could thus prepend `http://web.archive.org/web/20070913051458/` to each URL and `wget` them en masse.
+
+For more information on `wget`, please consult [this lesson available on the Programming Historian website](http://programminghistorian.org/lessons/automated-downloading-with-wget). 
+
 ## Network Analysis: Basic Gephi (or inbrowser D3.JS??)
