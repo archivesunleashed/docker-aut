@@ -8,26 +8,39 @@ The virtual machine that is built uses 2GB of RAM. Your host machine will need t
 
 ## Requirements
 
+Download each of the following dependencies.
+
 1. [VirtualBox](https://www.virtualbox.org/)
 2. [Vagrant](http://www.vagrantup.com/)
 3. [Git](https://git-scm.com/)
 
 ## Use
 
-1. `git clone https://github.com/web-archive-group/warcbase_workshop_vagrant.git`
-2. `cd warcbase_workshop_vagrant`
-3. `vagrant up`
+You'll need to get your virtual machine running on the command line. For a basic walkthrough of how to use the command line, please consult [this lesson at the Programming Historian](http://programminghistorian.org/lessons/intro-to-bash).
+
+From a working directory, please run the following commands.
+
+1. `git clone https://github.com/web-archive-group/warcbase_workshop_vagrant.git` (this clones this repository)
+2. `cd warcbase_workshop_vagrant` (this changes into the repository directory)
+3. `vagrant up` (this builds the virtual machine)
+
+Once you run these three commands, you will have a running virtual machine with the latest version of warcbase installed.
 
 ## Connect
 
-ssh, scp, rsync:
+Now you need to connect to the machine. This will be done through your command line, but also through your browser through Spark Notebook.
+
+We use three commands to connect to this virtual machine. `ssh` to connect to it via your command line. `scp` to copy a file (such as a WARC or ARC), `rsync` to sync a directory between two machines.
+
+When prompted:
   - username: vagrant
   - password: vagrant
-  - Examples
-    - `vagrant ssh`
-    - `ssh -p 2222 vagrant@localhost`
-    - `scp -P 2222 somefile.txt vagrant@localhost:/destination/path`
-    - `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/tmp`
+
+Here are some example commands:
+* `vagrant ssh` - will connect to the machine (we recommend this command);
+* `ssh -p 2222 vagrant@localhost` - will connect to the machine using `ssh`;
+* `scp -P 2222 somefile.txt vagrant@localhost:/destination/path` - will copy `somefile.txt` to your vagrant machine. You'll need to specify the destination. For example, `scp -P 2222 WARC.warc.gz vagrant@localhost:/home/vagrant` will copy WARC.warc.gz to the home directory of the vagrant machine.
+* `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/home/vagrant` - will sync `somedir` to your home directory of the vagrant machine.
 
 ## Environment
 
@@ -42,12 +55,12 @@ ssh, scp, rsync:
 
 ## Spark Notebook
 
-To run spark notebook:
+To run spark notebook, type the following:
 
 * `vagrant ssh`
 * `cd project/spark-notebook-0.6.2-SNAPSHOT-scala-2.10.4-spark-1.5.1-hadoop-2.6.0-cdh5.4.2/bin`
 * `./spark-notebook -Dhttp.port=9000`
-* Visit http://127.0.0.1:9000/
+* Visit http://127.0.0.1:9000/ in your web browser.
 
 ![Spark Notebook](https://cloud.githubusercontent.com/assets/218561/14062458/f8c6a842-f375-11e5-991b-c5d6a80c6f1a.png)
 
@@ -118,3 +131,4 @@ You can find more information about this collection at [WebArchives.ca](http://w
 ## Authors
 
 - [Nick Ruest](https://github.com/ruebot)
+- [Ian Milligan](https://github.com/ianmilligan1)
