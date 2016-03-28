@@ -1,6 +1,8 @@
-This is a walkthrough to a basic Spark shell.
+# Spark Shell: Basic Introduction
 
-## Getting Started: Kicking the Tires
+This is a walkthrough to a basic Spark shell. In our warcbase workflow, we often prototype new scripts with the Spark Notebook, before running our jobs directly with Shell. You can [find our Spark Notebook lesson here](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/introduction-to-spark-notebooks.md). 
+
+## Step One: Getting Started
 
 You need to run the command so that it finds the warcbase jar (unlike spark shell where you will load it in your first command there). 
 
@@ -30,7 +32,7 @@ This counts the number of domains found in the collection and displays them. In 
 
 Try changing the `.take(10)` to `.take(20)` to see what you can find.
 
-## Text Analysis
+## Step Two: Textual Analysis
 
 ### All Text
 
@@ -75,7 +77,7 @@ There are other filters at play here. You can filter by language, year, patterns
 
 [Consult the documentation here](http://lintool.github.io/warcbase-docs/Spark-Extracting-Domain-Level-Plain-Text/). 
 
-## Network Analysis
+## Step Three: Network Analysis
 
 Let's run a basic network analysis.
 
@@ -135,7 +137,7 @@ WriteGDF(links, "/home/vagrant/all-links.gdf")
 
 We may return to this if we have time.
 
-## Image Analysis
+## Step Four: Image Analysis
 
 You may want to do work with images. The following script finds all the image URLs and displays the top 10.
 
@@ -160,4 +162,4 @@ To do analysis on all images, you could thus prepend `http://web.archive.org/web
 
 For more information on `wget`, please consult [this lesson available on the Programming Historian website](http://programminghistorian.org/lessons/automated-downloading-with-wget). 
 
-## Network Analysis: Basic Gephi (or inbrowser D3.JS??)
+## Step Five: Network Analysis: Basic Gephi (or inbrowser D3.JS??)

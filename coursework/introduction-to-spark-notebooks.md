@@ -1,5 +1,8 @@
+# Introduction to Spark Notebooks
+
 This is a walkthrough to a basic Spark notebook.
 
+## Step One: Getting Started 
 First, you need to load the warcbase jar. Paste this into the first command and press the play button.
 
 ```
@@ -27,7 +30,11 @@ sc)
 
 Click on the pie chart tab at bottom, and you'll see the breakdown of domains in all of its glory.
 
-Now we can do scripts that we ran in the shell. For example, extracting text:
+## Step Two: Prototyping Scripts: Text Analysis
+
+We generally recommend that people use the Spark Notebook to prototype scripts that they'll later adapt and run in their Spark Shell. 
+
+Let's give it a try by adapting some of the scripts that we might run in the Shell. For example, extracting text:
 
 ```
 val r = 
@@ -40,6 +47,8 @@ val len = 100
 (r.getCrawldate, r.getUrl, if ( t.length > len ) t.substring(0, len) else t)}) 
 .collect() 
 ```
+
+## Step Three: Slightly More Advanced Analysis
 
 We can set variables to make our life easier, such as:
 
