@@ -33,13 +33,14 @@ Now you need to connect to the machine. This will be done through your command l
 We use three commands to connect to this virtual machine. `ssh` to connect to it via your command line. `scp` to copy a file (such as a WARC or ARC), `rsync` to sync a directory between two machines.
 
 When prompted:
-  - username: vagrant
-  - password: vagrant
+  - username: `vagrant`
+  - password: `vagrant`
 
 Here are some example commands:
 * `vagrant ssh` - will connect to the machine (we recommend this command);
 * `ssh -p 2222 vagrant@localhost` - will connect to the machine using `ssh`;
-* `scp -P 2222 somefile.txt vagrant@localhost:/destination/path` - will copy `somefile.txt` to your vagrant machine. You'll need to specify the destination. For example, `scp -P 2222 WARC.warc.gz vagrant@localhost:/home/vagrant` will copy WARC.warc.gz to the home directory of the vagrant machine.
+* `scp -P 2222 somefile.txt vagrant@localhost:/destination/path` - will copy `somefile.txt` to your vagrant machine. 
+  - You'll need to specify the destination. For example, `scp -P 2222 WARC.warc.gz vagrant@localhost:/home/vagrant` will copy WARC.warc.gz to the home directory of the vagrant machine.
 * `rsync --rsh='ssh -p2222' -av somedir vagrant@localhost:/home/vagrant` - will sync `somedir` to your home directory of the vagrant machine.
 
 ## Environment
@@ -102,7 +103,7 @@ scala> :paste
 
 import org.warcbase.spark.matchbox._ 
 import org.warcbase.spark.rdd.RecordRDD._ 
-val r = RecordLoader.loadArc("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
+val r = RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
   .keepValidPages()
   .map(r => ExtractTopLevelDomain(r.getUrl))
   .countItems()
