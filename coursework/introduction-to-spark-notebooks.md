@@ -23,7 +23,7 @@ val r =
 RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", 
 sc) 
 .keepValidPages() 
-.map(r => ExtractTopLevelDomain(r.getUrl)) 
+.map(r => ExtractDomain(r.getUrl)) 
 .countItems() 
 .take(10) 
 ```
