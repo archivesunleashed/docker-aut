@@ -8,7 +8,7 @@ You need to run the command so that it finds the warcbase jar (unlike spark shel
 
 To run: `./spark-shell --jars /home/vagrant/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar`
 
-On your own system, you might want to pass different variables to allocate more memory and the such (i.e. on our server, we often use `/home/i2millig/spark-1.5.1/bin/spark-shell --driver-memory 60G --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar` to give it 60GB of memory; or on the cluster, we use `spark-shell --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar --num-executors 75 --executor-cores 5 --executor-memory 20G --driver-memory 26G`).
+>On your own system, you might want to pass different variables to allocate more memory and the such (i.e. on our server, we often use `/home/i2millig/spark-1.5.1/bin/spark-shell --driver-memory 60G --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar` to give it 60GB of memory; or on the cluster, we use `spark-shell --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar --num-executors 75 --executor-cores 5 --executor-memory 20G --driver-memory 26G`).
 
 Now we are ready for our first test script. To get this working, you need to first type:
 
@@ -38,7 +38,7 @@ Try changing the `.take(10)` to `.take(20)` to see what you can find.
 
 ### All Text
 
-Let's extract the plain text from the collection and dump them to a file.
+Let's extract the plain text from the collection and dump it to a file.
 
 ```
 import org.warcbase.spark.rdd.RecordRDD._
@@ -54,7 +54,7 @@ In another terminal window, let's check out our results. You should now have a d
 
 `vim part-00000`
 
-It has worked!
+It has worked! Note that if you run this script again, it will fail immediately: there cannot be a directory with the same name as the one you are attempting to create.
 
 ### Text by Domain
 
@@ -71,13 +71,13 @@ RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/
   .saveAsTextFile("/home/vagrant/WARC-plain-text-David-Suzuki")
 ```
 
-It should work as well. Note that your command `keepDomains(Set("www.davidsuzuki.org"))` needs to match the string you found above.
+It should work as well. Note that your command `keepDomains(Set("www.davidsuzuki.org"))` needs to match the string you found above. 
 
 ### Other filters
 
 There are other filters at play here. You can filter by language, year, patterns in URLs, and beyond. Let's play for a bit.
 
-[Consult the documentation here](http://lintool.github.io/warcbase-docs/Spark-Extracting-Domain-Level-Plain-Text/). 
+[Consult the documentation here](http://lintool.github.io/warcbase-docs/Spark-Extracting-Domain-Level-Plain-Text/). Try a few different filters. Nick and Ian will walk around the room to make sure you're all online.
 
 ## Step Three: Network Analysis
 
@@ -137,7 +137,7 @@ val links = RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/
 WriteGDF(links, "/home/vagrant/all-links.gdf")
 ```
 
-We may return to this if we have time.
+We may return to Gephi if we have time or you can consult the [Gephi lesson available here in our documentation](http://lintool.github.io/warcbase-docs/Gephi-Converting-Site-Link-Structure-into-Dynamic-Visualization/).
 
 ## Step Four: Image Analysis
 
