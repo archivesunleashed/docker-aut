@@ -9,3 +9,7 @@ Ian Milligan (Waterloo) and Nick Ruest (York) will be leading this workshop thro
 3. [Prototyping with Spark Notebooks](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/introduction-to-spark-notebooks.md)
 4. [Implementing with Spark Shell](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/introduction-to-spark-notebooks.md)
 5. Implementing on your own machines/Questions & Answer/potential breakouts into groups (Gephi, Twitter, etc.).
+
+## The Docs
+
+This workshop is a starting point. For future reference, please refer to [our documentation at docs.warcbase.org](http://docs.warcbase.org). 
