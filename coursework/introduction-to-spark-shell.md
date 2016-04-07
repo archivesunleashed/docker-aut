@@ -6,7 +6,17 @@ This is a walkthrough to a basic Spark shell. In our warcbase workflow, we often
 
 You need to run the command so that it finds the warcbase jar (unlike spark shell where you will load it in your first command there). 
 
-To run: `./spark-shell --jars /home/vagrant/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar`
+To run, navigate to the spark-shell directory by
+
+```bash
+cd /home/vagrant/project/spark-1.5.1-bin-hadoop2.6/bin
+```
+
+Then run with:
+
+```bash
+./spark-shell --jars /home/vagrant/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar
+``` 
 
 >On your own system, you might want to pass different variables to allocate more memory and the such (i.e. on our server, we often use `/home/i2millig/spark-1.5.1/bin/spark-shell --driver-memory 60G --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar` to give it 60GB of memory; or on the cluster, we use `spark-shell --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar --num-executors 75 --executor-cores 5 --executor-memory 20G --driver-memory 26G`).
 
@@ -18,7 +28,7 @@ Now we are ready for our first test script. To get this working, you need to fir
 
 Then you can paste the following script. When it's looking right, press `Ctrl` and `D` at the same time to get it running.
 
-```
+```scala
 import org.warcbase.spark.matchbox._ 
 import org.warcbase.spark.rdd.RecordRDD._ 
 val r = RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
@@ -40,7 +50,7 @@ Try changing the `.take(10)` to `.take(20)` to see what you can find.
 
 Let's extract the plain text from the collection and dump it to a file.
 
-```
+```scala
 import org.warcbase.spark.rdd.RecordRDD._
 import org.warcbase.spark.matchbox.{RemoveHTML, RecordLoader}
 
@@ -60,7 +70,7 @@ It has worked! Note that if you run this script again, it will fail immediately:
 
 Above, we saw that there were 34 pages belonging to `davidsuzuki.org`. Imagine we just want them. The following script adds a new command: `keepDomains`.
 
-```
+```scala
 import org.warcbase.spark.matchbox.{RemoveHTML, RecordLoader}
 import org.warcbase.spark.rdd.RecordRDD._
 
@@ -83,7 +93,7 @@ There are other filters at play here. You can filter by language, year, patterns
 
 Let's run a basic network analysis.
 
-```
+```scala
 import org.warcbase.spark.matchbox._
 import org.warcbase.spark.rdd.RecordRDD._
 import StringUtils._
@@ -122,7 +132,7 @@ We have other commands, which you can find on the page [here](http://lintool.git
 
 Let's say you wanted to do some more substantial network analysis with this collection. We can actually generate a file format that can be loaded directly by Gephi.
 
-```
+```scala
 import org.warcbase.spark.matchbox.{ExtractDomain, ExtractLinks, RecordLoader, WriteGDF}
 import org.warcbase.spark.rdd.RecordRDD._
 
@@ -143,7 +153,7 @@ We may return to Gephi if we have time or you can consult the [Gephi lesson avai
 
 You may want to do work with images. The following script finds all the image URLs and displays the top 10.
 
-```
+```scala
 import org.warcbase.spark.matchbox._
 import org.warcbase.spark.rdd.RecordRDD._
 
