@@ -1,6 +1,6 @@
 # Spark Shell: Basic Introduction
 
-This is a walkthrough to a basic Spark shell. In our warcbase workflow, we often prototype new scripts with the Spark Notebook, before running our jobs directly with Shell. You can [find our Spark Notebook lesson here](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/introduction-to-spark-notebooks.md). 
+This is a walkthrough to a basic Spark shell. In our warcbase workflow, we often prototype new scripts with the Spark Notebook, before running our jobs directly with Shell. You can [find our earlier Spark Notebook lesson here](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/introduction-to-spark-notebooks.md). 
 
 ## Step One: Getting Started
 
@@ -8,7 +8,9 @@ You need to run the command so that it finds the warcbase jar (unlike spark shel
 
 To run: `./spark-shell --jars /home/vagrant/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar`
 
-First script. To get this working, you need to first type:
+On your own system, you might want to pass different variables to allocate more memory and the such (i.e. on our server, we often use `/home/i2millig/spark-1.5.1/bin/spark-shell --driver-memory 60G --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar` to give it 60GB of memory; or on the cluster, we use `spark-shell --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar --num-executors 75 --executor-cores 5 --executor-memory 20G --driver-memory 26G`).
+
+Now we are ready for our first test script. To get this working, you need to first type:
 
 ```
 :paste
@@ -36,7 +38,7 @@ Try changing the `.take(10)` to `.take(20)` to see what you can find.
 
 ### All Text
 
-Let's extract the plain text from the collection and dump them to a CSV file.
+Let's extract the plain text from the collection and dump them to a file.
 
 ```
 import org.warcbase.spark.rdd.RecordRDD._
@@ -162,4 +164,6 @@ To do analysis on all images, you could thus prepend `http://web.archive.org/web
 
 For more information on `wget`, please consult [this lesson available on the Programming Historian website](http://programminghistorian.org/lessons/automated-downloading-with-wget). 
 
-## Step Five: Network Analysis: Basic Gephi (or inbrowser D3.JS??)
+## Next Steps
+
+Let's try setting it up on your own servers, or in a real production environment. We'll be around to lend hands on help.

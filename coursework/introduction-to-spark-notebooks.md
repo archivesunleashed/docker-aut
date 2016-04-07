@@ -1,6 +1,6 @@
 # Introduction to Spark Notebooks
 
-This is a walkthrough to a basic Spark notebook.
+This is a walkthrough to a basic Spark notebook. **In our warcbase workflow, we use the notebook to often prototype on one ARC or WARC file, before running production on a directory.**
 
 ## Step One: Getting Started 
 First, you need to load the warcbase jar. Paste this into the first command and press the play button.
@@ -32,7 +32,7 @@ Click on the pie chart tab at bottom, and you'll see the breakdown of domains in
 
 ## Step Two: Prototyping Scripts: Text Analysis
 
-We generally recommend that people use the Spark Notebook to prototype scripts that they'll later adapt and run in their Spark Shell. 
+As noted, we generally recommend that people use the Spark Notebook to prototype scripts that they'll later adapt and run in their Spark Shell. 
 
 Let's give it a try by adapting some of the scripts that we might run in the Shell. For example, extracting text:
 
@@ -83,3 +83,7 @@ r.getCrawldate), if ( t.length > len ) t.substring(0, len) else t)})
 ```
 
 Now you should have beautiful clickable links to explore.
+
+## Step Four: Switching to Shell
+
+Now that we have seen the basics of the Spark Notebook, [let's continue to the basics of the Spark Shell](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/introduction-to-spark-shell.md).
