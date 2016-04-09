@@ -20,12 +20,12 @@ Third, let's run a test script. The following will load one of the ARC files fro
 
 ```scala
 val r = 
-RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", 
+  RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", 
 sc) 
-.keepValidPages() 
-.map(r => ExtractDomain(r.getUrl)) 
-.countItems() 
-.take(10) 
+  .keepValidPages() 
+  .map(r => ExtractDomain(r.getUrl)) 
+  .countItems() 
+  .take(10) 
 ```
 
 Click on the pie chart tab at bottom, and you'll see the breakdown of domains in all of its glory.
@@ -38,14 +38,14 @@ Let's give it a try by adapting some of the scripts that we might run in the She
 
 ```scala
 val r = 
-RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", 
+  RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", 
 sc) 
-.keepValidPages() 
-.map(r => { 
-val t = RemoveHTML(r.getContentString) 
-val len = 100 
-(r.getCrawldate, r.getUrl, if ( t.length > len ) t.substring(0, len) else t)}) 
-.collect() 
+  .keepValidPages() 
+  .map(r => { 
+    val t = RemoveHTML(r.getContentString) 
+    val len = 100 
+    (r.getCrawldate, r.getUrl, if ( t.length > len ) t.substring(0, len) else t)}) 
+  .collect() 
 ```
 
 ## Step Three: Slightly More Advanced Analysis
@@ -71,14 +71,13 @@ Now let's re-run a familiar command from before but with this `createClickableLi
 
 ```scala
 val r = 
-RecordLoader.loadArchives(warc, 
-sc) 
-.keepValidPages() 
-.map(r => { 
-val t = RemoveHTML(r.getContentString) 
-val len = 100 
-(r.getCrawldate, createClickableLink(r.getUrl, 
-r.getCrawldate), if ( t.length > len ) t.substring(0, len) else t)}) 
+  RecordLoader.loadArchives(warc, sc) 
+  .keepValidPages() 
+  .map(r => { 
+    val t = RemoveHTML(r.getContentString) 
+    val len = 100 
+    (r.getCrawldate, createClickableLink(r.getUrl, 
+    r.getCrawldate), if ( t.length > len ) t.substring(0, len) else t)}) 
 .collect()
 ```
 
