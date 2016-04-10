@@ -6,6 +6,10 @@ This is a virtual machine for Warcbase workshops. [Warcbase](http://warcbase.org
 
 The virtual machine that is built uses 2GB of RAM. Your host machine will need to be able to support that.
 
+It requires a lot of data. If you are attending a workshop at a conference, we strongly recommend downloading everything beforehand.
+
+[Coursework can be found in the coursework subdirectory](https://github.com/web-archive-group/warcbase_workshop_vagrant/tree/master/coursework). 
+
 ## Requirements
 
 Download each of the following dependencies.
@@ -22,7 +26,7 @@ From a working directory, please run the following commands.
 
 1. `git clone https://github.com/web-archive-group/warcbase_workshop_vagrant.git` (this clones this repository)
 2. `cd warcbase_workshop_vagrant` (this changes into the repository directory)
-3. `vagrant up` (this builds the virtual machine)
+3. `vagrant up` (this builds the virtual machine - it will take a while and download a lot of data)
 
 Once you run these three commands, you will have a running virtual machine with the latest version of warcbase installed.
 
@@ -32,12 +36,13 @@ Now you need to connect to the machine. This will be done through your command l
 
 We use three commands to connect to this virtual machine. `ssh` to connect to it via your command line. `scp` to copy a file (such as a WARC or ARC), `rsync` to sync a directory between two machines.
 
+To get started, type `vagrant ssh` in the directory where you installed the VM. 
+
 When prompted:
   - username: `vagrant`
   - password: `vagrant`
 
-Here are some example commands:
-* `vagrant ssh` - will connect to the machine (we recommend this command);
+Here are some other example commands:
 * `ssh -p 2222 vagrant@localhost` - will connect to the machine using `ssh`;
 * `scp -P 2222 somefile.txt vagrant@localhost:/destination/path` - will copy `somefile.txt` to your vagrant machine. 
   - You'll need to specify the destination. For example, `scp -P 2222 WARC.warc.gz vagrant@localhost:/home/vagrant` will copy WARC.warc.gz to the home directory of the vagrant machine.
