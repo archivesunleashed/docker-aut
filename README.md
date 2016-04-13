@@ -18,6 +18,14 @@ Download each of the following dependencies.
 2. [Vagrant](http://www.vagrantup.com/)
 3. [Git](https://git-scm.com/)
 
+## Virtual Machine
+
+To install this virtual machine, you have two options. 
+
+[You can download it from this link and load it using VirtualBox](http://alpha.library.yorku.ca/releases/warcbase_workshop/Warcbase_workshop_VM.ova). Note that this is a 6.4GB download. If you do this, skip to "Spark Notebook" below.
+
+Or you can use vagrant to build it yourself.
+
 ## Use
 
 You'll need to get your virtual machine running on the command line. For a basic walkthrough of how to use the command line, please consult [this lesson at the Programming Historian](http://programminghistorian.org/lessons/intro-to-bash).
@@ -63,7 +71,7 @@ Here are some other example commands:
 
 To run spark notebook, type the following:
 
-* `vagrant ssh`
+* `vagrant ssh` (if on vagrant; if you downloaded the ova file and are running with VirtualBox you do not need to do this)
 * `cd project/spark-notebook-0.6.2-SNAPSHOT-scala-2.10.4-spark-1.5.1-hadoop-2.6.0-cdh5.4.2/bin`
 * `./spark-notebook -Dhttp.port=9000 -J-Xms1024m`
 * Visit http://127.0.0.1:9000/ in your web browser.
