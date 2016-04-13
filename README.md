@@ -22,7 +22,7 @@ Download each of the following dependencies.
 
 To install this virtual machine, you have two options. 
 
-[You can download it from this link and load it using VirtualBox](http://alpha.library.yorku.ca/releases/warcbase_workshop/Warcbase_workshop_VM.ova). Note that this is a 6.4GB download. If you do this, skip to "Spark Notebook" below.
+[You can download it from this link and load it using VirtualBox](http://alpha.library.yorku.ca/releases/warcbase_workshop/Warcbase_workshop_VM.ova). Note that this is a 6.4GB download. If you do this, [skip to "Spark Notebook" below](https://github.com/web-archive-group/warcbase_workshop_vagrant#spark-notebook).
 
 Or you can use vagrant to build it yourself.
 
