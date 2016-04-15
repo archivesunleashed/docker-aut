@@ -3,6 +3,8 @@
 
 The reality of any hands-on workshop is that things will break. We've tried our best to provide a robust VM that can let you walk through the basics of warcbase alongside us.
 
+![homepage of slidedeck](https://raw.githubusercontent.com/web-archive-group/WAHR/master/images/iipc-workshop/slidedeck.png)
+
 If you have any questions, let us know!
 
 - [Nick Ruest](https://github.com/ruebot)
