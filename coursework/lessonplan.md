@@ -3,22 +3,16 @@
 
 ## Table of Contents
 
-1. [Installation](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#installation)
-2. [Testing](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#testing)
-3. [Spark Notebook](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#spark-notebook) 
-3.1. [Getting Started](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-one-getting-started) 
-
-3.2. [Learning Spark Notebook](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-two-learning-spark-notebook) 
-
-3.3. [Introductory Text Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-three-prototyping-scripts-text-analysis) 
-
-3.4. [More Advanced Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-four-slightly-more-advanced-analysis) 
-
-3.5. [More sophisticated commands](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-more-sophisticated-commands) 
-
-4. [Network Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-four-network-analysis) 
-
-5. [Image Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-image-analysis) 
+* 1. [Installation](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#installation)
+* 2. [Testing](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#testing)
+* 3. [Spark Notebook](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#spark-notebook)
+* 3.1. [Getting Started](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-one-getting-started) 
+* 3.2. [Learning Spark Notebook](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-two-learning-spark-notebook) 
+* 3.3. [Introductory Text Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-three-prototyping-scripts-text-analysis) 
+* 3.4. [More Advanced Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-four-slightly-more-advanced-analysis)
+* 3.5. [More sophisticated commands](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-more-sophisticated-commands) 
+* 4. [Network Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-four-network-analysis) 
+* 5. [Image Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-image-analysis) 
 
 
 ## Installation
