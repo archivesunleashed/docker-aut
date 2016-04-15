@@ -18,10 +18,10 @@ If you have any questions, let us know!
 * 3.3. [Introductory Text Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-three-prototyping-scripts-text-analysis) 
 * 3.4. [More Advanced Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-four-slightly-more-advanced-analysis)
 * 3.5. [More sophisticated commands](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-more-sophisticated-commands) 
-* 4. [Network Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-four-network-analysis) 
-* 5. [Image Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-image-analysis) 
-* 6. [Next Steps](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#next-steps)
-* 7. [Acknowledgements and Final Notes](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#acknowledgements-and-final-notes)
+* 3.6. [Network Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-six-network-analysis) 
+* 3.7. [Image Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-seven-image-analysis) 
+* 4. [Next Steps](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#next-steps)
+* 5. [Acknowledgements and Final Notes](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#acknowledgements-and-final-notes)
 
 ## Installation
 
@@ -285,7 +285,7 @@ There are other filters at play here. You can filter by language, year, patterns
 
 [Consult the documentation here](http://lintool.github.io/warcbase-docs/Spark-Extracting-Domain-Level-Plain-Text/). Try a few different filters. Nick and Ian will walk around the room to make sure you're all online.
 
-### Step Four: Network Analysis
+#### Step Six: Network Analysis
 
 Let's run a basic network analysis.
 
@@ -326,7 +326,7 @@ You should see:
 
 We have other commands, which you can find on the page [here](http://lintool.github.io/warcbase-docs/Spark-Analysis-of-Site-Link-Structure/). Start playing around with this now.
 
-### Step Five: Image Analysis
+##### Step Seven: Image Analysis
 
 You may want to do work with images. The following script finds all the image URLs and displays the top 10.
 
