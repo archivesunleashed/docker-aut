@@ -3,6 +3,13 @@
 
 ## Table of Contents
 
+1. [Installation](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#installation)
+2. [Testing](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#testing)
+3. [Spark Notebook](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#spark-notebook)
+3.1. [Getting Started](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-one-getting-started)
+3.2. [Learning Spark Notebook](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-two-learning-spark-notebook)
+3.3. [Text Analysis]
+
 ## Installation
 
 ### Option One: VirtualBox
@@ -11,11 +18,11 @@ Download [VirtualBox from here](https://www.virtualbox.org) and install it. You 
 
 Your VirtualBox will hopefully look like this:
 
-![alt text](link)
+![VM manager](https://raw.githubusercontent.com/web-archive-group/WAHR/master/images/iipc-workshop/vm-manager.png)
 
 Go to your File menu, select "Import Appliance," and select the OVA file. Press "continue," then "Import."
 
-![alt text](link)
+![VM load](https://raw.githubusercontent.com/web-archive-group/WAHR/master/images/iipc-workshop/vm-import.png)
 
 Then press "Start."
 
@@ -168,7 +175,7 @@ sc)
   .collect() 
 ```
 
-## Step Three: Slightly More Advanced Analysis
+### Step Four: Slightly More Advanced Analysis
 
 We can set variables to make our life easier, such as:
 
@@ -203,7 +210,7 @@ val r =
 
 Now you should have beautiful clickable links to explore.
 
-#### Step Four: Dumping to Files
+#### Step Five: More sophisticated commands
 
 We would normally switch to Spark Shell at this point, but given the amount of Windows machine let's learn new commands in notebook.
 
@@ -221,7 +228,7 @@ RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/
 
 You should now have a directory in `/home/vagrant/` with the plain text. I will show you it.
 
-### Text by Domain
+##### Text by Domain
 
 Above, we saw that there were 34 pages belonging to `davidsuzuki.org`. Imagine we just want them. The following script adds a new command: `keepDomains`.
 
@@ -238,13 +245,13 @@ RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/
 
 It should work as well. Note that your command `keepDomains(Set("www.davidsuzuki.org"))` needs to match the string you found above. 
 
-### Other filters
+##### Other filters
 
 There are other filters at play here. You can filter by language, year, patterns in URLs, and beyond. Let's play for a bit.
 
 [Consult the documentation here](http://lintool.github.io/warcbase-docs/Spark-Extracting-Domain-Level-Plain-Text/). Try a few different filters. Nick and Ian will walk around the room to make sure you're all online.
 
-## Step Five: Network Analysis
+### Step Five: Network Analysis
 
 Let's run a basic network analysis.
 
@@ -285,7 +292,7 @@ You should see:
 
 We have other commands, which you can find on the page [here](http://lintool.github.io/warcbase-docs/Spark-Analysis-of-Site-Link-Structure/). Start playing around with this now.
 
-## Step Six: Image Analysis
+### Step Six: Image Analysis
 
 You may want to do work with images. The following script finds all the image URLs and displays the top 10.
 
