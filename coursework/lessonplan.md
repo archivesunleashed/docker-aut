@@ -118,6 +118,10 @@ scala>
 
 If this works, things are going well.
 
+You can exit by typing: `exit`.
+
+Let's make our lives easier by using the Notebook.
+
 ## Spark Notebook
 
 In our warcbase workflow, we use the notebook to often prototype on one ARC or WARC file, before running production on a directory. 
