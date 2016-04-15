@@ -1,6 +1,13 @@
 # Hands on With Warcbase
 # IIPC WAC 2016, Ian Milligan and Nick Ruest
 
+The reality of any hands-on workshop is that things will break. We've tried our best to provide a robust VM that can let you walk through the basics of warcbase alongside us.
+
+If you have any questions, let us know!
+
+- [Nick Ruest](https://github.com/ruebot)
+- [Ian Milligan](https://github.com/ianmilligan1)
+
 ## Table of Contents
 
 * 1. [Installation](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#installation)
@@ -13,7 +20,8 @@
 * 3.5. [More sophisticated commands](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-more-sophisticated-commands) 
 * 4. [Network Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-four-network-analysis) 
 * 5. [Image Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-image-analysis) 
-
+* 6. [Next Steps](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#next-steps)
+* 7. [Acknowledgements and Final Notes](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#acknowledgements-and-final-notes)
 
 ## Installation
 
@@ -139,6 +147,8 @@ To run spark notebook, type the following:
 
 ### Step Two: Learning Spark Notebook
 
+Let's start a new notebook. Click the "new" button in the upper right, and then select the line beginning with `Scala [2.10.4]...`. Give it a fun name like "WARC Workshop."
+
 First, you need to load the warcbase jar. Paste this into the first command and press the play button.
 
 ```bash
@@ -166,6 +176,8 @@ sc)
 
 Click on the pie chart tab at bottom, and you'll see the breakdown of domains in all of its glory.
 
+To see why notebooks are fun, change the `10` above to `20`. Press play again.
+
 ### Step Three: Prototyping Scripts: Text Analysis
 
 As noted, we generally recommend that people use the Spark Notebook to prototype scripts that they'll later adapt and run in their Spark Shell. 
@@ -184,15 +196,28 @@ sc)
   .collect() 
 ```
 
+Again, change a variable. Right now, we see 100 characters of each webpage. Let's change that to 200. Change `val len = 100` to `val len = 200`.
+
 ### Step Four: More Advanced Analysis
 
-We can set variables to make our life easier, such as:
+Sometimes it can get boring typing out the same thing over and over again. We can set variables to make our life easier, such as:
 
 ```scala
 val warc="/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz"
 ```
 
-Now instead of typing the path, we can just use `warc`. Try running that cell and replacing it in the script above.
+Now instead of typing the path, we can just use `warc`. Try running that cell and replacing it in the script above. For the lazy, it looks like:
+
+```scala
+val r = 
+  RecordLoader.loadArchives(warc, sc) 
+  .keepValidPages() 
+  .map(r => { 
+    val t = RemoveHTML(r.getContentString) 
+    val len = 200 
+    (r.getCrawldate, r.getUrl, if ( t.length > len ) t.substring(0, len) else t)}) 
+  .collect() 
+```
 
 Finally, we can do some neat tricks with browser injection. Run the following cell:
 
@@ -217,13 +242,13 @@ val r =
 .collect()
 ```
 
-Now you should have beautiful clickable links to explore.
+Now you should have beautiful clickable links to explore. Open in a few in a new tab!
 
 #### Step Five: More sophisticated commands
 
-We would normally switch to Spark Shell at this point, but given the amount of Windows machine let's learn new commands in notebook.
+We would normally switch to Spark Shell at this point, but given the amount of Windows machines let's learn new commands in notebook.
 
-For example, to grab the plain text from the collection and save it to a file, we could use:
+For example, to grab the plain text from the collection and **save it to a file**, we could use:
 
 ```scala
 import org.warcbase.spark.rdd.RecordRDD._
@@ -329,3 +354,17 @@ For more information on `wget`, please consult [this lesson available on the Pro
 # Next Steps
 
 Let's try setting it up on your own servers, or in a real production environment. We'll be around to lend hands on help.
+
+# Acknowledgements and Final Notes
+
+This build also includes the [warcbase resources](https://github.com/lintool/warcbase-resources) repository, which contains NER libraries as well as sample data from the University of Toronto (located in `/home/vagrant/project/warcbase-resources/Sample-Data/`).
+
+The ARC and WARC file are drawn from the [Canadian Political Parties & Political Interest Groups Archive-It Collection](https://archive-it.org/collections/227), collected by the University of Toronto. We are grateful that they've provided this material to us.
+
+If you use their material, please cite it along the following lines:
+
+- University of Toronto Libraries, Canadian Political Parties and Interest Groups, Archive-It Collection 227, Canadian Action Party, http://wayback.archive-it.org/227/20051004191340/http://canadianactionparty.ca/Default2.asp
+
+You can find more information about this collection at [WebArchives.ca](http://webarchives.ca/). 
+
+This research has been supported by the Social Sciences and Humanities Research Council with Insight Grant 435-2015-0011. Additional funding for student labour on this project comes from an Ontario Ministry of Research and Innovation Early Researcher Award.
