@@ -40,7 +40,9 @@ Go to your File menu, select "Import Appliance," and select the OVA file. Press 
 
 Then press "Start."
 
-If you're lucky, the terminal window will appear.
+If you're lucky, the terminal window will appear. If you're asked for a username or password, it is:
+  - username: `vagrant`
+  - password: `vagrant`
 
 ### Option Two: Vagrant
 
