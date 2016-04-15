@@ -4,6 +4,7 @@
 The reality of any hands-on workshop is that things will break. We've tried our best to provide a robust VM that can let you walk through the basics of warcbase alongside us.
 
 ![homepage of slidedeck](https://raw.githubusercontent.com/web-archive-group/WAHR/master/images/iipc-workshop/slidedeck.png)
+[Click here for our introductory slidedeck (PDF, 24MB).](http://yorkspace.library.yorku.ca/xmlui/bitstream/handle/10315/31108/hands-on-with-warcbase.key.pdf?sequence=1)
 
 If you have any questions, let us know!
 
