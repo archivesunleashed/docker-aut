@@ -20,8 +20,9 @@ If you have any questions, let us know!
 * 3.5. [More sophisticated commands](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-five-more-sophisticated-commands) 
 * 3.6. [Network Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-six-network-analysis) 
 * 3.7. [Image Analysis](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-seven-image-analysis) 
-* 4. [Next Steps](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#next-steps)
-* 5. [Acknowledgements and Final Notes](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#acknowledgements-and-final-notes)
+* 4. [Spark Shell](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#step-four-spark-shell)
+* 5. [Next Steps](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#next-steps)
+* 6. [Acknowledgements and Final Notes](https://github.com/web-archive-group/warcbase_workshop_vagrant/blob/master/coursework/lessonplan.md#acknowledgements-and-final-notes)
 
 ## Installation
 
@@ -350,6 +351,48 @@ Let's use the top-ranked example. [This link](http://web.archive.org/web/*/http:
 To do analysis on all images, you could thus prepend `http://web.archive.org/web/20070913051458/` to each URL and `wget` them en masse.
 
 For more information on `wget`, please consult [this lesson available on the Programming Historian website](http://programminghistorian.org/lessons/automated-downloading-with-wget). 
+
+### Step Four: Spark Shell
+
+We won't have much time for Spark Shell today, but we wanted to briefly show it. In our warcbase workflow, we often prototype new scripts with the Spark Notebook, before running our jobs directly with Shell.
+
+To run, navigate to the spark-shell directory by
+
+```bash
+cd /home/vagrant/project/spark-1.5.1-bin-hadoop2.6/bin
+```
+
+Then run with:
+
+```bash
+./spark-shell --jars /home/vagrant/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar
+``` 
+
+>On your own system, you might want to pass different variables to allocate more memory and the such (i.e. on our server, we often use `/home/i2millig/spark-1.5.1/bin/spark-shell --driver-memory 60G --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar` to give it 60GB of memory; or on the cluster, we use `spark-shell --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar --num-executors 75 --executor-cores 5 --executor-memory 20G --driver-memory 26G`).
+
+Now we are ready for our first test script. To get this working, you need to first type:
+
+```
+:paste
+```
+
+Then you can paste the following script. When it's looking right, press `Ctrl` and `D` at the same time to get it running.
+
+```scala
+import org.warcbase.spark.matchbox._ 
+import org.warcbase.spark.rdd.RecordRDD._ 
+val r = RecordLoader.loadArchives("/home/vagrant/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
+  .keepValidPages()
+  .map(r => ExtractDomain(r.getUrl))
+  .countItems()
+  .take(10)
+```
+
+This counts the number of domains found in the collection and displays them. In the above, your result should look like:
+
+>r: Array[(String, Int)] = Array((communist-party.ca,39), (www.gca.ca,39), (greenparty.ca,39), (www.davidsuzuki.org,34), (westernblockparty.com,26), (www.nosharia.com,24), (partimarijuana.org,22), (www.ccsd.ca,22), (canadianactionparty.ca,22), (www.nawl.ca,19))
+
+You probably get the sense.
 
 # Next Steps
 
