@@ -4,13 +4,13 @@ If you are reading this document then you are interested in contributing to the 
 
 ### Use cases
 
-If you would like to submit a use case for the warcbase project, please submit and issue [here](https://github.com/web-archive-group/warcbase_workshop_vagrant/issues/new), assigning the "use case" label to the issue.
+If you would like to submit a use case for the workshop, please submit and issue [here](https://github.com/web-archive-group/warcbase_workshop_vagrant/issues/new), assigning the "use case" label to the issue.
 
 ### Documentation
 
 You can contribute documentation in two different ways. One way is to create an issue [here](https://github.com/web-archive-group/warcbase_workshop_vagrant/issues/new) assign the "documentation" label to the issue. 
 
-We also do have a [warcbase-docs](https://github.com/web-archive-group/warcbase_workshop_vagrant-docs) repository. You can fork and do a Pull Request. All documentation resides in [`docs`](https://github.com/web-archive-group/warcbase_workshop_vagrant-docs/tree/master/docs).
+Or, you can fork and do a Pull Request. All documentation resides in the [`README`], and  [`coursework`](https://github.com/web-archive-group/warcbase_workshop_vagrant/tree/master/coursework) directory.
 
 ### Request a new feature
 
@@ -22,7 +22,7 @@ To report a bug you should [open an issue](https://github.com/web-archive-group/
 
 In order to help us understand and fix the bug it would be great if you could provide us with:
 
-1. The steps to reproduce the bug. This includes information about e.g. the warcbase version you were using, whether on a single node or cluster, etc.
+1. The steps to reproduce the bug. This includes information about e.g. the version you were using, whether on a single node or cluster, etc.
 2. The expected behavior.
 3. The actual, incorrect behavior.
 
@@ -52,4 +52,4 @@ Take a look at [Creating a pull request](https://help.github.com/articles/creati
 2. Commit any changes to your fork.
 3. Send a [pull request](https://help.github.com/articles/creating-a-pull-request) to the warcbase GitHub repository that you forked in step 1.  If your pull request is related to an existing issue -- for instance, because you reported a [bug/issue](https://github.com/web-archive-group/warcbase_workshop_vagrant/issues) earlier -- prefix the title of your pull request with the corresponding issue number (e.g. `issue-123: ...`). Please also include a reference to the issue in the description of the pull. This can be done by using '#' plus the issue number like so '#123', also try to pick an appropriate name for the branch in which you're issuing the pull request from. 
 
-You may want to read [Syncing a fork](https://help.github.com/articles/syncing-a-fork) for instructions on how to keep your fork up to date with the latest changes of the upstream (official) `warcbase` repository.
+You may want to read [Syncing a fork](https://help.github.com/articles/syncing-a-fork) for instructions on how to keep your fork up to date with the latest changes of the upstream (official) `warcbase_workshop_vagrant` repository.
