@@ -22,7 +22,7 @@ Download each of the following dependencies.
 
 To install this virtual machine, you have two options. 
 
-[You can download it from this link and load it using VirtualBox](http://alpha.library.yorku.ca/releases/warcbase_workshop/Warcbase_workshop_VM.ova). Note that this is a 6.4GB download. If you do this, [skip to "Spark Notebook" below](https://github.com/web-archive-group/warcbase_workshop_vagrant#spark-notebook).
+[You can download it from this link and "import the appliance" using VirtualBox](http://alpha.library.yorku.ca/releases/warcbase_workshop/Warcbase_workshop_VM.ova). Note that this is a 6.4GB download. If you do this, [skip to "Spark Notebook" below](https://github.com/web-archive-group/warcbase_workshop_vagrant#spark-notebook).
 
 Or you can use vagrant to build it yourself.
 
@@ -82,7 +82,7 @@ To run spark notebook, type the following:
 
 To run spark shell:
 
-* `vagrant ssh`
+* `vagrant ssh` (if you did not run that in the previous step)
 * `cd project/spark-1.5.1-bin-hadoop2.6/bin`
 * `./spark-shell --jars /home/vagrant/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar`
 
@@ -129,6 +129,8 @@ import org.warcbase.spark.matchbox._
 import org.warcbase.spark.rdd.RecordRDD._
 r: Array[(String, Int)] = Array((communist-party.ca,39), (www.gca.ca,39), (greenparty.ca,39), (www.davidsuzuki.org,34), (westernblockparty.com,26), (www.nosharia.com,24), (partimarijuana.org,22), (www.ccsd.ca,22), (canadianactionparty.ca,22), (www.nawl.ca,19))
 ```
+
+To quit Spark Shell, you can exit using Ctrl+C.
 
 ## Resources
 
