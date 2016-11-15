@@ -185,4 +185,4 @@ You can find more information about this collection at [WebArchives.ca](http://w
 
 ## Acknowlegements
 
-This research has been supported by the Social Sciences and Humanities Research Council with Insight Grant 435-2015-0011. Additional funding for student labour on this project comes from an Ontario Ministry of Research and Innovation Early Researcher Award.
+This research has been supported by the Social Sciences and Humanities Research Council with Insight Grant 435-2015-0011. Additional funding for student labour on this project comes from an Ontario Ministry of Research and Innovation Early Researcher Award. The idea for the AWS deployment came from the DocNow team and their [repository here](https://github.com/web-archive-group/warcbase_workshop_vagrant/tree/aws).
