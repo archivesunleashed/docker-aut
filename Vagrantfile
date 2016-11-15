@@ -11,26 +11,27 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "Warcbase workshop VM"
   end
-  config.vm.hostname = "warcbase"
 
+  config.vm.hostname = "warcbase"
+  
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "lattice/ubuntu-trusty-64"
+  config.vm.box = "ubuntu/xenial64"
 
   config.vm.network :forwarded_port, guest: 9000, host: 9000 # Spark Notebook
 
   config.vm.provider :aws do |aws, override|
-  aws.access_key_id = "KEY"
-  aws.secret_access_key = "SECRETKEY"
-  #aws.security_groups = "sg-eaf78b93"
-
-  #aws.session_token = ""
-  aws.region = "us-west-2"
-
-  aws.region_config "us-west-2" do |region|
+    aws.access_key_id = "KEY"
+    aws.secret_access_key = "SECRETKEY"
+    override.vm.box = "lattice/ubuntu-trusty-64"
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = "/PATH/TO/KEY"
+    aws.region = "us-west-2"
+    aws.region_config "us-west-2" do |region|
       region.ami = "ami-01f05461"
       # by default, spins up lightweight m3.medium. If want powerful, uncomment below.
       # region.instance_type = "c3.4xlarge"
       region.keypair_name = "KEYPAIRNAME"
+    end
   end
 
   # This should work fine out of the box if environment variables are declared
@@ -45,10 +46,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     provider.region = 'tor1'
     provider.size = '4gb'
     override.vm.network :forwarded_port, guest: 80, host: 80
-  end
-
-  override.ssh.username = "ubuntu"
-  override.ssh.private_key_path = "/PATH/TO/PRIVATE/key.pem"
   end
 
   config.vm.provider "virtualbox" do |vb|
