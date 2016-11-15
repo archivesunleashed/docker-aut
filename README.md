@@ -120,7 +120,7 @@ To run spark shell:
 
 Example:
 ```bash
-ubuntu@warcbase:~/project/spark-1.5.1-bin-hadoop2.6/bin$ ./spark-shell --jars /home/ubuntu/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar
+ubuntu@warcbase:~/project/spark-1.5.1-bin-hadoop2.6/bin$ ./spark-shell --jars /home/ubuntu/project/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar
 WARN  NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Welcome to
       ____              __
