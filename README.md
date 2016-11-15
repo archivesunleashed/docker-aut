@@ -54,6 +54,9 @@ And then modify the `VagrantFile` to point to your AWS information. The followin
 
   aws.region_config "us-west-2" do |region|
       region.ami = "ami-01f05461"
+      # by default, spins up lightweight m3.medium. If want powerful, uncomment below.
+      # region.instance_type = "c3.4xlarge"
+
       region.keypair_name = "KEYPAIRNAME"
   end
 
@@ -65,7 +68,7 @@ You can then load it by typing:
 
 `vagrant up --provider aws`
 
-Note, you will need to change your AWS Security Group to allow for incoming connections on port 22 (SSH) and 9000 (for Spark Notebook).
+Note, you will need to change your AWS Security Group to allow for incoming connections on port 22 (SSH) and 9000 (for Spark Notebook). By default, it launches a lightweight m3.medium. To do real work, you will need a larger (and sadly more expensive instance).
 
 ## Connect
 
