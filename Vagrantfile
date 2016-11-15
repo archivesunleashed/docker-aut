@@ -28,6 +28,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   aws.region_config "us-west-2" do |region|
       region.ami = "ami-01f05461"
+      # by default, spins up lightweight m3.medium. If want powerful, uncomment below.
+      # region.instance_type = "c3.4xlarge"
       region.keypair_name = "KEYPAIRNAME"
   end
 
