@@ -106,7 +106,9 @@ To run spark notebook, type the following:
 * `vagrant ssh` (if on vagrant; if you downloaded the ova file and are running with VirtualBox you do not need to do this)
 * `cd /home/ubuntu/project/spark-notebook-0.6.3-scala-2.11.7-spark-1.6.2-hadoop-2.7.2/bin`
 * `./spark-notebook -Dhttp.port=9000 -J-Xms1024m`
-* Visit http://127.0.0.1:9000/ in your web browser.
+* Visit http://127.0.0.1:9000/ in your web browser. 
+
+If you are connecting via AWS, visit the IP address of your instance (found on EC2 dashboard), port 9000 (i.e. `35.162.32.51:9000`).
 
 ![Spark Notebook](https://cloud.githubusercontent.com/assets/218561/14062458/f8c6a842-f375-11e5-991b-c5d6a80c6f1a.png)
 
