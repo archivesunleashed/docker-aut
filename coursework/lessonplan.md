@@ -47,7 +47,7 @@ If you're lucky, the terminal window will appear. If you're asked for a username
   - username: `ubuntu`
   - password: `ubuntu`
 
-### Option Two: Vagrant
+### Option Two: Vagrant (Local)
 
 We're assuming you're a bit more technical if you're going this route. 
 
@@ -73,19 +73,54 @@ We use three commands to connect to this virtual machine. `ssh` to connect to it
 
 To get started, type `vagrant ssh` in the directory where you installed the VM. 
 
-When prompted:
-  - username: `vagrant`
-  - password: `vagrant`
-
 Here are some other example commands:
 * `ssh -p 2222 ubuntu@localhost` - will connect to the machine using `ssh`;
 * `scp -P 2222 somefile.txt ubuntu@localhost:/destination/path` - will copy `somefile.txt` to your vagrant machine. 
   - You'll need to specify the destination. For example, `scp -P 2222 WARC.warc.gz ubuntu@localhost:/home/ubuntu` will copy WARC.warc.gz to the home directory of the vagrant machine.
 * `rsync --rsh='ssh -p2222' -av somedir ubuntu@localhost:/home/ubuntu` - will sync `somedir` to your home directory of the vagrant machine.
 
+### Option Two: Vagrant (AWS)
+
+Download each of the following dependencies.
+
+1. [VirtualBox](https://www.virtualbox.org/)
+2. [Vagrant](http://www.vagrantup.com/)
+3. [Git](https://git-scm.com/)
+
+Install the vagrant-aws plugin by running:
+
+`vagrant plugin install vagrant-aws`
+
+From a working directory, please run the following commands.
+
+1. `git clone https://github.com/web-archive-group/warcbase_workshop_vagrant.git` (this clones this repository)
+2. `cd warcbase_workshop_vagrant` (this changes into the repository directory)
+3. You will then have to edit your `Vagrantfile`. Pay attention to this block to add your AWS information.
+
+```
+  config.vm.provider :aws do |aws, override|
+  aws.access_key_id = "KEYHERE"
+  aws.secret_access_key = "SECRETKEYHERE"
+  aws.region = "us-west-2"
+
+  aws.region_config "us-west-2" do |region|
+      region.ami = "ami-01f05461"
+      # by default, spins up lightweight m3.medium. If want powerful, uncomment below.
+      # region.instance_type = "c3.4xlarge"
+
+      region.keypair_name = "KEYPAIRNAME"
+  end
+
+  override.ssh.username = "ubuntu"
+  override.ssh.private_key_path = "PATHTOPRIVATEKEY"
+```
+
+4. You can then load it by typing: `vagrant up --provider aws`
+5. You may need to override your security group settings in the EC2 dashboard. Ensure that port 22 (SSH) and 9000 (for the Spark notebook) are open.
+
 ## Testing
 
-Let's make sure we can get spark notebook running. On vagrant, connect using `vagrant ssh`. 
+Let's make sure we can get spark notebook running. On vagrant, connect using `vagrant ssh`. This will also bring you into the AWS.
 
 If you used VirtualBox, you have two options. On OS X or Linux, you can minimize your window, open your terminal, and connect to it using: `ssh -p 2222 ubuntu@localhost`.
 
@@ -104,7 +139,7 @@ ubuntu@warcbase:~$
 
 Example:
 ```bash
-ubuntu@warcbase:~/project/spark-1.5.1-bin-hadoop2.6/bin$ ./spark-shell --jars /home/ubuntu/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar
+ubuntu@warcbase:~/project/spark-1.5.1-bin-hadoop2.6/bin$ ./spark-shell --jars /home/ubuntu/project/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar
 WARN  NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Welcome to
       ____              __
@@ -145,9 +180,11 @@ In our warcbase workflow, we use the notebook to often prototype on one ARC or W
 To run spark notebook, type the following:
 
 * `vagrant ssh` (if on vagrant; if you downloaded the ova file and are running with VirtualBox you do not need to do this)
-* `cd project/spark-notebook-0.6.2-SNAPSHOT-scala-2.10.4-spark-1.5.1-hadoop-2.6.0-cdh5.4.2/bin`
+* `cd /home/ubuntu/project/spark-notebook-0.6.3-scala-2.11.7-spark-1.6.2-hadoop-2.7.2/bin`
 * `./spark-notebook -Dhttp.port=9000 -J-Xms1024m`
-* Visit http://127.0.0.1:9000/ in your web browser.
+* Visit http://127.0.0.1:9000/ in your web browser. 
+
+If you are connecting via AWS, visit the IP address of your instance (found on EC2 dashboard), port 9000 (i.e. `35.162.32.51:9000`).
 
 ![Spark Notebook](https://cloud.githubusercontent.com/assets/218561/14062458/f8c6a842-f375-11e5-991b-c5d6a80c6f1a.png)
 
@@ -198,7 +235,7 @@ sc)
   .map(r => { 
     val t = RemoveHTML(r.getContentString) 
     val len = 100 
-    (r.getCrawldate, r.getUrl, if ( t.length > len ) t.substring(0, len) else t)}) 
+    (r.getCrawlDate, r.getUrl, if ( t.length > len ) t.substring(0, len) else t)}) 
   .collect() 
 ```
 
@@ -243,8 +280,8 @@ val r =
   .map(r => { 
     val t = RemoveHTML(r.getContentString) 
     val len = 100 
-    (r.getCrawldate, createClickableLink(r.getUrl, 
-    r.getCrawldate), if ( t.length > len ) t.substring(0, len) else t)}) 
+    (r.getCrawlDate, createClickableLink(r.getUrl, 
+    r.getCrawlDate), if ( t.length > len ) t.substring(0, len) else t)}) 
 .collect()
 ```
 
@@ -262,7 +299,7 @@ import org.warcbase.spark.matchbox.{RemoveHTML, RecordLoader}
 
 RecordLoader.loadArchives("/home/ubuntu/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
   .keepValidPages()
-  .map(r => (r.getCrawldate, r.getDomain, r.getUrl, RemoveHTML(r.getContentString)))
+  .map(r => (r.getCrawlDate, r.getDomain, r.getUrl, RemoveHTML(r.getContentString)))
   .saveAsTextFile("/home/ubuntu/WARC-plain-text")
 ```
 
@@ -279,7 +316,7 @@ import org.warcbase.spark.rdd.RecordRDD._
 RecordLoader.loadArchives("/home/ubuntu/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
   .keepValidPages()
   .keepDomains(Set("www.davidsuzuki.org"))
-  .map(r => (r.getCrawldate, r.getDomain, r.getUrl, RemoveHTML(r.getContentString)))
+  .map(r => (r.getCrawlDate, r.getDomain, r.getUrl, RemoveHTML(r.getContentString)))
   .saveAsTextFile("/home/ubuntu/WARC-plain-text-David-Suzuki")
 ```
 
@@ -370,7 +407,7 @@ cd /home/ubuntu/project/spark-1.5.1-bin-hadoop2.6/bin
 Then run with:
 
 ```bash
-./spark-shell --jars /home/ubuntu/project/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar
+./spark-shell --jars /home/ubuntu/project/warcbase/warcbase-core/target/warcbase-core-0.1.0-SNAPSHOT-fatjar.jar
 ``` 
 
 >On your own system, you might want to pass different variables to allocate more memory and the such (i.e. on our server, we often use `/home/i2millig/spark-1.5.1/bin/spark-shell --driver-memory 60G --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar` to give it 60GB of memory; or on the cluster, we use `spark-shell --jars ~/warcbase/target/warcbase-0.1.0-SNAPSHOT-fatjar.jar --num-executors 75 --executor-cores 5 --executor-memory 20G --driver-memory 26G`).
