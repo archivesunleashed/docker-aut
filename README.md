@@ -22,9 +22,9 @@ Download each of the following dependencies.
 
 To install this virtual machine, you have two options. 
 
-[You can download it from this link and load it using VirtualBox](http://alpha.library.yorku.ca/releases/warcbase_workshop/Warcbase_workshop_VM.ova). Note that this is a 6.4GB download. If you do this, [skip to "Spark Notebook" below](https://github.com/web-archive-group/warcbase_workshop_vagrant#spark-notebook).
+[You can download it from this link and "import the appliance" using VirtualBox](http://alpha.library.yorku.ca/releases/warcbase_workshop/Warcbase_workshop_VM.ova). Note that this is a 6.4GB download. If you do this, [skip to "Spark Notebook" below](https://github.com/web-archive-group/warcbase_workshop_vagrant#spark-notebook).
 
-Or you can use vagrant to build it yourself.
+Or you can use vagrant to build it yourself, or provision it using `aws`.
 
 ## Use
 
@@ -37,6 +37,38 @@ From a working directory, please run the following commands.
 3. `vagrant up` (this builds the virtual machine - it will take a while and download a lot of data)
 
 Once you run these three commands, you will have a running virtual machine with the latest version of warcbase installed.
+
+## Cloud Deployment
+
+You can also deploy this as an AWS machine. To do so, install [vagrant-aws](https://github.com/mitchellh/vagrant-aws). 
+
+`vagrant plugin install vagrant-aws`
+
+And then modify the `VagrantFile` to point to your AWS information. The following block will need to be changed:
+
+```
+  config.vm.provider :aws do |aws, override|
+  aws.access_key_id = "KEYHERE"
+  aws.secret_access_key = "SECRETKEYHERE"
+  aws.region = "us-west-2"
+
+  aws.region_config "us-west-2" do |region|
+      region.ami = "ami-01f05461"
+      # by default, spins up lightweight m3.medium. If want powerful, uncomment below.
+      # region.instance_type = "c3.4xlarge"
+
+      region.keypair_name = "KEYPAIRNAME"
+  end
+
+  override.ssh.username = "ubuntu"
+  override.ssh.private_key_path = "PATHTOPRIVATEKEY"
+```
+
+You can then load it by typing:
+
+`vagrant up --provider aws`
+
+Note, you will need to change your AWS Security Group to allow for incoming connections on port 22 (SSH) and 9000 (for Spark Notebook). By default, it launches a lightweight m3.medium. To do real work, you will need a larger (and sadly more expensive instance).
 
 ## Connect
 
@@ -73,7 +105,9 @@ To run spark notebook, type the following:
 * `vagrant ssh` (if on vagrant; if you downloaded the ova file and are running with VirtualBox you do not need to do this)
 * `cd spark-notebook-0.6.3-scala-2.10.5-spark-1.6.1-hadoop-2.6.0/bin`
 * `./spark-notebook -Dhttp.port=9000 -J-Xms1024m`
-* Visit http://127.0.0.1:9000/ in your web browser.
+* Visit http://127.0.0.1:9000/ in your web browser. 
+
+If you are connecting via AWS, visit the IP address of your instance (found on EC2 dashboard), port 9000 (i.e. `35.162.32.51:9000`).
 
 ![Spark Notebook](https://cloud.githubusercontent.com/assets/218561/14062458/f8c6a842-f375-11e5-991b-c5d6a80c6f1a.png)
 
@@ -203,8 +237,27 @@ Spark context available as sc.
 2017-04-27 13:30:50,513 [main] INFO  SparkILoop - Created sql context (with Hive support)..
 SQL context available as sqlContext.
 
-scala> 
+scala>
+scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+import org.warcbase.spark.matchbox._ 
+import org.warcbase.spark.rdd.RecordRDD._ 
+val r = RecordLoader.loadArchives("/home/ubuntu/project/warcbase-resources/Sample-Data/ARCHIVEIT-227-UOFTORONTO-CANPOLPINT-20060622205612-00009-crawling025.archive.org.arc.gz", sc)
+  .keepValidPages()
+  .map(r => ExtractDomain(r.getUrl))
+  .countItems()
+  .take(10)
+
+// Exiting paste mode, now interpreting.
+
+ERROR ArcRecordUtils - Read 1235 bytes but expected 1311 bytes. Continuing...
+import org.warcbase.spark.matchbox._
+import org.warcbase.spark.rdd.RecordRDD._
+r: Array[(String, Int)] = Array((communist-party.ca,39), (www.gca.ca,39), (greenparty.ca,39), (www.davidsuzuki.org,34), (westernblockparty.com,26), (www.nosharia.com,24), (partimarijuana.org,22), (www.ccsd.ca,22), (canadianactionparty.ca,22), (www.nawl.ca,19))
 ```
+
+To quit Spark Shell, you can exit using Ctrl+C.
 
 ## Resources
 
@@ -225,4 +278,4 @@ You can find more information about this collection at [WebArchives.ca](http://w
 
 ## Acknowlegements
 
-This research has been supported by the Social Sciences and Humanities Research Council with Insight Grant 435-2015-0011. Additional funding for student labour on this project comes from an Ontario Ministry of Research and Innovation Early Researcher Award.
+This research has been supported by the Social Sciences and Humanities Research Council with Insight Grant 435-2015-0011. Additional funding for student labour on this project comes from an Ontario Ministry of Research and Innovation Early Researcher Award. The idea for the AWS deployment came from the DocNow team and their [repository here](https://github.com/web-archive-group/warcbase_workshop_vagrant/tree/aws).
