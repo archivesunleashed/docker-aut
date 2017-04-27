@@ -8,6 +8,11 @@ sudo echo "LANGUAGE=en_US.UTF-8" >> /etc/environment
 sudo echo "LC_ALL=en_US.UTF-8" >> /etc/environment
 sudo echo "LC_CTYPE=en_US.UTF-8" >> /etc/environment
 
+#######################################################################
+# Work around for https://bugs.launchpad.net/cloud-images/+bug/1569237
+echo "ubuntu:ubuntu" | chpasswd
+#######################################################################
+
 # Update
 apt-get -y update && apt-get -y upgrade
 
@@ -49,4 +54,4 @@ MAN_FILES=$(wget -qO- "http://sourceforge.net/projects/zsh/files/zsh/5.0.2/zsh-5
 for MAN_FILE in $MAN_FILES; do gzip /usr/share/man/man1/"${MAN_FILE##*/}"; done
 
 # More helpful packages
-apt-get -y install htop tree zsh
+apt-get -y install htop tree zsh unzip
