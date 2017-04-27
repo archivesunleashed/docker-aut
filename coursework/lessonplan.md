@@ -121,7 +121,6 @@ From a working directory, please run the following commands.
 
 4. You can then load it by typing: `vagrant up --provider aws`
 5. You may need to override your security group settings in the EC2 dashboard. Ensure that port 22 (SSH) and 9000 (for the Spark notebook) are open.
->>>>>>> 08651a0ef825265991e6c92c6e90af07bf7514b9
 
 ## Testing
 
