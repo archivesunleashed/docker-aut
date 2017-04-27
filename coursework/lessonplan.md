@@ -277,7 +277,7 @@ In our warcbase workflow, we use the notebook to often prototype on one ARC or W
 To run spark notebook, type the following:
 
 * `vagrant ssh` (if on vagrant; if you downloaded the ova file and are running with VirtualBox you do not need to do this)
-* `cd spark-notebook-0.6.3-scala-2.10.5-spark-1.6.1-hadoop-2.6.0/bin`
+* `cd project/spark-notebook-0.6.3-scala-2.10.5-spark-1.6.1-hadoop-2.6.0/bin`
 * `./spark-notebook -Dhttp.port=9000 -J-Xms1024m`
 * Visit http://127.0.0.1:9000/ in your web browser. 
 
