@@ -19,10 +19,11 @@ RUN cd /aut && wget -q "http://central.maven.org/maven2/io/archivesunleashed/aut
 RUN cd /tmp \
     && wget -q "https://s3.eu-central-1.amazonaws.com/spark-notebook/tgz/spark-notebook-0.7.0-pre2-scala-2.10.5-spark-1.6.2-hadoop-2.7.3.tgz" \
     && tar -xf "/tmp/spark-notebook-0.7.0-pre2-scala-2.10.5-spark-1.6.2-hadoop-2.7.3.tgz" -C /notebook --strip-components=1 \
-    && rm "/tmp/spark-notebook-0.7.0-pre2-scala-2.10.5-spark-1.6.2-hadoop-2.7.3.tgz" \
-    && cd /notebook && bin/spark-notebook -Dhttp.port=9000 -J-Xms1024m &
+    && rm "/tmp/spark-notebook-0.7.0-pre2-scala-2.10.5-spark-1.6.2-hadoop-2.7.3.tgz"
 
 RUN cd /tmp \
     && wget -q "http://d3kbcqa49mib13.cloudfront.net/spark-1.6.1-bin-hadoop2.6.tgz" \
     && tar -xf "/tmp/spark-1.6.1-bin-hadoop2.6.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-1.6.1-bin-hadoop2.6.tgz"
+
+CMD cd /notebook && bin/spark-notebook -Dhttp.port=9000 -J-Xms1024m

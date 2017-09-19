@@ -18,18 +18,31 @@ Install each of the following dependencies:
 
 ## Use
 
-Please run the following command:
+### Docker Hub
 
 `docker run --rm -it -p 9000:9000 -p 4040:4040 archivesunleashed/docker-aut`
 
-Once the build finishes, you should be at a command line prompt on the Docker image.
+### Locally
 
-Example:
+1. `git clone https://github.com/archivesunleashed/docker-aut.git`
+2. `cd docker-aut`
+3. `docker build -t aut .`
+4. `docker run --rm -it -p 9000:9000 -p 4040:4040 aut`
+
+
+Once the build finishes, you should see:
+
 ```bash
-root@73309b4247ed:/# 
+$ docker run --rm -it -p 9000:9000 -p 4040:4040 aut
+Play server process ID is 6
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/notebook/lib/ch.qos.logback.logback-classic-1.1.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/notebook/lib/org.slf4j.slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
+[info] play - Application started (Prod)
+[info] play - Listening for HTTP on /0.0.0.0:9000
 ```
-
-For a basic walkthrough of how to use the command line, please consult [this lesson at the Programming Historian](http://programminghistorian.org/lessons/intro-to-bash).
 
 ## Spark Notebook
 
@@ -39,9 +52,24 @@ To run spark notebook, visit http://127.0.0.1:9000/ in your web browser.
 
 ## Spark Shell
 
-To run spark shell:
+To run spark shell you will need to shell into your Docker image. For a basic walkthrough of how to use the command line, please consult [this lesson at the Programming Historian](http://programminghistorian.org/lessons/intro-to-bash).
 
-`/spark/bin/spark-shell --jars /aut/aut-0.9.0-fatjar.jar`
+In another terminal run `$ docker ps -a`. This should yield something like:
+
+```
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                                            NAMES
+3f361fed472c        aut                 "/bin/sh -c 'cd /n..."   About a minute ago   Up About a minute   0.0.0.0:4040->4040/tcp, 0.0.0.0:9000->9000/tcp   adoring_lumiere
+```
+
+To shell into you Docker image, use the following command, which uses the "CONTAINER ID".
+
+```
+$ docker exec -it 3f361fed472c bash
+```
+
+To run Spark shell:
+
+`$ /spark/bin/spark-shell --jars /aut/aut-0.9.0-fatjar.jar`
 
 Example:
 ```bash
