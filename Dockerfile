@@ -9,15 +9,14 @@ LABEL website="http://archivesunleashed.org/"
 EXPOSE 9000
 
 ## Build variables
-
-#########################
-# Tied to Altiscale
-#########################
-ARG HADOOP_VERSION=2.7.3
-ARG SPARK_VERSION=2.1.1
-ARG SCALA_VERSION=2.11.8
-#########################
-ARG NOTEBOOK_VERSION=master
+########################################################################################
+# We're not tied to Altiscale.
+# See: https://github.com/archivesunleashed/docker-aut/issues/10#issuecomment-334582293
+########################################################################################
+ARG HADOOP_VERSION=2.6.5
+ARG NOTEBOOK_VERSION=0.7.0-pre2
+ARG SCALA_VERSION=2.11.7
+ARG SPARK_VERSION=1.6.3
 
 # Java & Maven
 RUN apt-get -qq update && apt-get -qq -y install wget git tar ca-certificates openjdk-8-jdk openjdk-8-jdk-headless openjdk-8-jre maven \
@@ -26,13 +25,12 @@ RUN apt-get -qq update && apt-get -qq -y install wget git tar ca-certificates op
 
 # Sample resources
 RUN git clone https://github.com/archivesunleashed/aut-resources.git \
-    && mkdir /aut /spark /notebook /data /scala
+    && mkdir /aut /spark /notebook
 
 # Archives Unleashed Toolkit
 RUN git clone https://github.com/archivesunleashed/aut.git aut \
     && cd aut && mvn -q clean install \
-    && mv /aut/target/aut-*-fatjar.jar /aut/aut.jar \
-    && export ADD_JARS=/aut/aut.jar
+    && mv /aut/target/aut-*-fatjar.jar /aut/aut.jar
 
 # Spark Notebook
 RUN cd /tmp \
@@ -42,22 +40,8 @@ RUN cd /tmp \
 
 # Spark shell
 RUN cd /tmp \
-    && wget -q "http://d3kbcqa49mib13.cloudfront.net/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" \
-    && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
-    && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
-
-# Scala
-RUN wget -q "https://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz" \
-    && tar xfz scala-$SCALA_VERSION.tgz -C /scala \
-    && rm scala-$SCALA_VERSION.tgz \
-    && ln -s /scala/bin/scala /usr/bin/scala
-
-# Workspace
-VOLUME /notebook/notebooks /data
-
-# Setup ENV for aut in Spark Notebook
-#ENV ADD_JARS=/aut/target/aut-0.10.1-SNAPSHOT.jar \
-#    SCALA_HOME=/usr/share/scala \
-#    SPARK_HOME=/spark
+    && wget -q "http://d3kbcqa49mib13.cloudfront.net/spark-$SPARK_VERSION-bin-hadoop2.6.tgz" \
+    && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.6.tgz" -C /spark --strip-components=1 \
+    && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.6.tgz"
 
 CMD cd /notebook && bin/spark-notebook -Dhttp.port=9000 -J-Xms1024m

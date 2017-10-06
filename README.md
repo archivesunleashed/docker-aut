@@ -32,22 +32,14 @@ Once the build finishes, you should see:
 
 ```bash
 $ docker run --rm -it -p 9000:9000 aut
-2017-10-04 18:56:36 WARN  application:111 - Logger configuration in conf files is deprecated and has no effect. Use a logback configuration file instead.
-2017-10-04 18:56:37 INFO  Slf4jLogger:92 - Slf4jLogger started
-2017-10-04 18:56:37 WARN  application:111 - application.langs is deprecated, use play.i18n.langs instead
-2017-10-04 18:56:37 WARN  application:111 - application.conf @ file:/notebook/conf/application.conf: 8: application.secret is deprecated, use play.crypto.secret instead
-2017-10-04 18:56:37 INFO  Play:92 - Application started (Prod)
-2017-10-04 18:56:37 INFO  NettyServer:92 - Listening for HTTP on /0.0.0.0:9000
-[DEBUG] [10/04/2017 18:56:45.287] [netty-event-loop-3] [EventStream] StandardOutLogger started
-2017-10-04 18:56:45 INFO  Slf4jLogger:92 - Slf4jLogger started
-[DEBUG] [10/04/2017 18:56:45.310] [netty-event-loop-3] [EventStream(akka://NotebookServer)] logger log1-Slf4jLogger started
-[DEBUG] [10/04/2017 18:56:45.310] [netty-event-loop-3] [EventStream(akka://NotebookServer)] Default Loggers started
-2017-10-04 18:56:45 INFO  Remoting:107 - Starting remoting
-2017-10-04 18:56:45 INFO  Remoting:107 - Remoting started; listening on addresses :[akka.tcp://NotebookServer@127.0.0.1:44995]
-2017-10-04 18:56:45 INFO  Remoting:107 - Remoting now listens on addresses: [akka.tcp://NotebookServer@127.0.0.1:44995]
-2017-10-04 18:56:45 INFO  application:92 - io.provider_timeout: 89000 ms
-2017-10-04 18:56:45 INFO  application:92 - Notebooks dir is /notebook/notebooks
-2017-10-04 18:56:45 INFO  application:92 - Notebook directory is: /notebook/notebooks
+Play server process ID is 6
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/notebook/lib/ch.qos.logback.logback-classic-1.1.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/notebook/lib/org.slf4j.slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
+[info] play - Application started (Prod)
+[info] play - Listening for HTTP on /0.0.0.0:9000
 ```
 
 ## Spark Notebook
