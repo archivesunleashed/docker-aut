@@ -134,11 +134,6 @@ If you use their material, please cite it along the following lines:
 
 You can find more information about this collection at [WebArchives.ca](http://webarchives.ca/about).
 
-## Authors
-
-- [Nick Ruest](https://github.com/ruebot)
-- [Ian Milligan](https://github.com/ianmilligan1)
-
 ## Acknowlegements
 
 This work is primarily supported by the [Andrew W. Mellon Foundation](https://uwaterloo.ca/arts/news/multidisciplinary-project-will-help-historians-unlock). Additional funding for the Toolkit has come from the U.S. National Science Foundation, Columbia University Library's Mellon-funded Web Archiving Incentive Award, the Natural Sciences and Engineering Research Council of Canada, the Social Sciences and Humanities Research Council of Canada, and the Ontario Ministry of Research and Innovation's Early Researcher Award program. Any opinions, findings, and conclusions or recommendations expressed are those of the researchers and do not necessarily reflect the views of the sponsors.
