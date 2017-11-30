@@ -1,4 +1,4 @@
-# docker-aut 
+# docker-aut
 [![Docker Stars](https://img.shields.io/docker/stars/archivesunleashed/docker-aut.svg)](https://hub.docker.com/r/archivesunleashed/docker-aut/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/archivesunleashed/docker-aut.svg)](https://hub.docker.com/r/archivesunleashed/docker-aut/)
 [![LICENSE](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](./LICENSE)
@@ -20,69 +20,28 @@ Install each of the following dependencies:
 
 ### Docker Hub
 
-`docker run --rm -it -p 9000:9000 archivesunleashed/docker-aut`
+`docker run --rm -it -p archivesunleashed/docker-aut:0.11.0`
 
 ### Locally
 
-1. `git clone https://github.com/archivesunleashed/docker-aut.git`
+1. `git clone -b 0.11.0 https://github.com/archivesunleashed/docker-aut.git`
 2. `cd docker-aut`
 3. `docker build -t aut .`
-4. `docker run --rm -it -p 9000:9000 aut`
+4. `docker run --rm -it aut`
 
 
 Once the build finishes, you should see:
 
 ```bash
-$ docker run --rm -it -p 9000:9000 aut
-Play server process ID is 6
-SLF4J: Class path contains multiple SLF4J bindings.
-SLF4J: Found binding in [jar:file:/notebook/lib/ch.qos.logback.logback-classic-1.1.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: Found binding in [jar:file:/notebook/lib/org.slf4j.slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
-SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
-SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
-[info] play - Application started (Prod)
-[info] play - Listening for HTTP on /0.0.0.0:9000
-```
-
-## Spark Notebook
-
-To run spark notebook, visit http://127.0.0.1:9000/ in your web browser. 
-
-![Spark Notebook](https://cloud.githubusercontent.com/assets/218561/14062458/f8c6a842-f375-11e5-991b-c5d6a80c6f1a.png)
-
-## Spark Shell
-
-To run spark shell you will need to shell into your Docker image. For a basic walkthrough of how to use the command line, please consult [this lesson at the Programming Historian](http://programminghistorian.org/lessons/intro-to-bash).
-
-In another terminal run `docker ps -a`. This should yield something like:
-
-```
-$ docker ps -a
-CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                    NAMES
-d4c566c24d3f        aut                 "/bin/sh -c 'cd /n..."   About a minute ago   Up About a minute   0.0.0.0:9000->9000/tcp   musing_franklin
-```
-
-To shell into you Docker image, use the following command, which uses the "CONTAINER ID".
-
-```
-$ docker exec -it d4c566c24d3f bash
-```
-
-To run Spark shell:
-
-`$ /spark/bin/spark-shell --jars /aut/aut.jar`
-
-Example:
-```bash
-root@d4c566c24d3f:/# /spark/bin/spark-shell --jars /aut/aut.jar
+$ docker run --rm -it aut
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-2017-10-04 18:58:32,128 [main] WARN  NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-2017-10-04 18:58:36,017 [main] WARN  ObjectStore - Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
-2017-10-04 18:58:36,093 [main] WARN  ObjectStore - Failed to get database default, returning NoSuchObjectException
-2017-10-04 18:58:36,548 [main] WARN  ObjectStore - Failed to get database global_temp, returning NoSuchObjectException
+2017-12-08 00:28:03,803 [main] WARN  NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2017-12-08 00:28:10,965 [main] WARN  ObjectStore - Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
+2017-12-08 00:28:11,130 [main] WARN  ObjectStore - Failed to get database default, returning NoSuchObjectException
+2017-12-08 00:28:12,068 [main] WARN  ObjectStore - Failed to get database global_temp, returning NoSuchObjectException
 Spark context Web UI available at http://172.17.0.2:4040
-Spark context available as 'sc' (master = local[*], app id = local-1507143512649).
+Spark context available as 'sc' (master = local[*], app id = local-1512692884451).
 Spark session available as 'spark'.
 Welcome to
       ____              __
@@ -90,16 +49,16 @@ Welcome to
     _\ \/ _ \/ _ `/ __/  '_/
    /___/ .__/\_,_/_/ /_/\_\   version 2.1.1
       /_/
-         
-Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_131)
+
+Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_151)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
-scala> 
+scala>
 
 ```
 
-Example script:
+#### Example script:
 
 ```
 scala> :paste
@@ -117,7 +76,7 @@ val r = RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc)
 // Exiting paste mode, now interpreting.
 
 [Stage 0:>                                                          (0 + 2) / 2]2017-10-04 18:45:44,534 [Executor task launch worker for task 1] ERROR ArcRecordUtils - Read 1235 bytes but expected 1311 bytes. Continuing...
-import io.archivesunleashed.spark.matchbox._                                    
+import io.archivesunleashed.spark.matchbox._
 import io.archivesunleashed.spark.rdd.RecordRDD._
 r: Array[(String, Int)] = Array((www.equalvoice.ca,4644), (www.liberal.ca,1968), (greenparty.ca,732), (www.policyalternatives.ca,601), (www.fairvote.ca,465), (www.ndp.ca,417), (www.davidsuzuki.org,396), (www.canadiancrc.com,90), (www.gca.ca,40), (communist-party.ca,39))
 ```
