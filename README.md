@@ -20,7 +20,7 @@ Install each of the following dependencies:
 
 ### Docker Hub
 
-`docker run --rm -it -p archivesunleashed/docker-aut:0.11.0`
+`docker run --rm -it archivesunleashed/docker-aut:0.11.0`
 
 ### Locally
 
