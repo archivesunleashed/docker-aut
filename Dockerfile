@@ -21,6 +21,7 @@ RUN git clone https://github.com/archivesunleashed/aut-resources.git
 # Archives Unleashed Toolkit
 RUN git clone https://github.com/archivesunleashed/aut.git /aut \
     && cd /aut \
+    && export JAVA_OPTS=-Xmx512m \
     && mvn clean install \
     && mv target/aut-*-SNAPSHOT-fatjar.jar /aut/aut.jar
 
@@ -31,4 +32,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --jars /aut/aut.jar
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.11.1-SNAPSHOT"
