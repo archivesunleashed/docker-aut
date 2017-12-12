@@ -18,11 +18,6 @@ RUN apk add --update \
 # Sample resources
 RUN git clone https://github.com/archivesunleashed/aut-resources.git /aut-resources
 
-# Archives Unleashed Toolkit
-RUN mkdir /aut \
-    && cd /aut \
-    && wget -q "http://central.maven.org/maven2/io/archivesunleashed/aut/0.11.0/aut-0.11.0-fatjar.jar"
-
 # Spark shell
 RUN mkdir /spark \
     && cd /tmp \
@@ -30,4 +25,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --jars /aut/aut-0.11.0-fatjar.jar
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.12.0"
