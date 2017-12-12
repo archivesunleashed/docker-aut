@@ -22,6 +22,10 @@ Install each of the following dependencies:
 
 `docker run --rm -it archivesunleashed/docker-aut:0.12.0`
 
+If you want to mount your own data:
+
+`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.12.0`
+
 ### Locally
 
 1. `git clone -b 0.12.0 https://github.com/archivesunleashed/docker-aut.git`
