@@ -22,8 +22,7 @@ RUN git clone https://github.com/archivesunleashed/aut-resources.git
 RUN git clone https://github.com/archivesunleashed/aut.git /aut \
     && cd /aut \
     && export JAVA_OPTS=-Xmx512m \
-    && mvn clean install \
-    && mv target/aut-*-SNAPSHOT-fatjar.jar /aut/aut.jar
+    && mvn clean install
 
 # Spark shell
 RUN mkdir /spark \
