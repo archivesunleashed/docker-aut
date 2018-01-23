@@ -91,7 +91,7 @@ val r = RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc)
 .take(10)
 ```
 
-You should see the following:
+Press Ctrl+D in order to execute the script. You should then see the following:
 
 ```
 // Exiting paste mode, now interpreting.
