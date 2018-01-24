@@ -6,13 +6,13 @@
 
 ## Introduction
 
-Docker image for [Archives Unleashed Toolkit](https://github.com/archivesunleashed/aut). [AUT](https://github.com/archivesunleashed/aut) documentation can be found [here](http://archivesunleashed.org/aut/).
+This is the Docker image for [Archives Unleashed Toolkit](https://github.com/archivesunleashed/aut). [AUT](https://github.com/archivesunleashed/aut) documentation can be found [here](http://archivesunleashed.org/aut/).
 
 The Archives Unleashed Toolkit is part of the broader [Archives Unleashed Project](http://archivesunleashed.org/).
 
 ## Requirements
 
-Install each of the following dependencies:
+Install the following dependencies:
 
 1. [Docker](https://www.docker.com/get-docker)
 
@@ -20,13 +20,19 @@ Install each of the following dependencies:
 
 ### Docker Hub
 
+Make sure that Docker is running. Run the following command to launch the Apache Spark shell with `aut` available:
+
 `docker run --rm -it archivesunleashed/docker-aut`
 
-If you want to mount your own data:
+If you want to mount your own data, replace `/path/to/your/data` in the following command with the directory where your ARC or WARC files are contained.
 
 `docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut`
 
+You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut/tree/README#example).
+
 ### Locally
+
+You can also build this Docker image locally with the following steps:
 
 1. `git clone https://github.com/archivesunleashed/docker-aut.git`
 2. `cd docker-aut`
@@ -62,12 +68,19 @@ scala>
 
 ```
 
-#### Example
+## Example
+
+When the image is running, you will be brought to the Spark Shell interface. Try running the following command.
+
+Type
 
 ```
-scala> :paste
-// Entering paste mode (ctrl-D to finish)
+:paste
+```
 
+And then paste the following script in:
+
+```
 import io.archivesunleashed.spark.matchbox._
 import io.archivesunleashed.spark.rdd.RecordRDD._
 
@@ -76,8 +89,11 @@ val r = RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc)
 .map(r => ExtractDomain(r.getUrl))
 .countItems()
 .take(10)
+```
 
+Press Ctrl+D in order to execute the script. You should then see the following:
 
+```
 // Exiting paste mode, now interpreting.
 
 import io.archivesunleashed.spark.matchbox._
@@ -87,6 +103,8 @@ r: Array[(String, Int)] = Array((www.equalvoice.ca,4644), (www.liberal.ca,1968),
 scala>
 
 ```
+
+In this case, things are working! Try substituting your own data (mounted using the command above).
 
 To quit Spark Shell, you can exit using <kbd>CTRL</kbd>+<kbd>c</kbd>.
 
