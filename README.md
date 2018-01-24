@@ -20,7 +20,7 @@ Install the following dependencies:
 
 ### Docker Hub
 
-Once Docker is running, run the following command to launch it:
+Run the following command to launch the Apache Spark shell with `aut` available:
 
 `docker run --rm -it archivesunleashed/docker-aut`
 
@@ -32,7 +32,7 @@ You will be brought to a Spark shell. Skip ahead to the [example below](https://
 
 ### Locally
 
-You can also build this Docker image locally with the following steps.
+You can also build this Docker image locally with the following steps:
 
 1. `git clone https://github.com/archivesunleashed/docker-aut.git`
 2. `cd docker-aut`
