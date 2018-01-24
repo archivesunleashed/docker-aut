@@ -20,7 +20,7 @@ Install the following dependencies:
 
 ### Docker Hub
 
-Run the following command to launch the Apache Spark shell with `aut` available:
+Make sure that Docker is running. Run the following command to launch the Apache Spark shell with `aut` available:
 
 `docker run --rm -it archivesunleashed/docker-aut`
 
