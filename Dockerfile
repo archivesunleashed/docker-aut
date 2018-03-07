@@ -25,4 +25,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.12.2"
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.13.0"
