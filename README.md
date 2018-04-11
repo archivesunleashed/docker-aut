@@ -81,8 +81,9 @@ Type
 And then paste the following script in:
 
 ```
-import io.archivesunleashed.spark.matchbox._
-import io.archivesunleashed.spark.rdd.RecordRDD._
+
+import io.archivesunleashed._
+import io.archivesunleashed.matchbox._
 
 val r = RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc)
 .keepValidPages()
