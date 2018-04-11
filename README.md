@@ -20,15 +20,15 @@ Install each of the following dependencies:
 
 ### Docker Hub
 
-`docker run --rm -it archivesunleashed/docker-aut:0.14.0`
+`docker run --rm -it archivesunleashed/docker-aut:0.15.0`
 
 If you want to mount your own data:
 
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.14.0`
+`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.15.0`
 
 ### Locally
 
-1. `git clone -b 0.14.0 https://github.com/archivesunleashed/docker-aut.git`
+1. `git clone -b 0.15.0 https://github.com/archivesunleashed/docker-aut.git`
 2. `cd docker-aut`
 3. `docker build -t aut .`
 4. `docker run --rm -it aut`
@@ -68,8 +68,8 @@ scala>
 scala> :paste
 // Entering paste mode (ctrl-D to finish)
 
-import io.archivesunleashed.spark.matchbox._
-import io.archivesunleashed.spark.rdd.RecordRDD._
+import io.archivesunleashed._
+import io.archivesunleashed.matchbox._
 
 val r = RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc)
 .keepValidPages()
