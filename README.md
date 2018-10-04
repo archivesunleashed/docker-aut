@@ -20,15 +20,15 @@ Install each of the following dependencies:
 
 ### Docker Hub
 
-`docker run --rm -it archivesunleashed/docker-aut:0.16.0`
+`docker run --rm -it archivesunleashed/docker-aut:0.17.0`
 
 If you want to mount your own data:
 
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.16.0`
+`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.17.0`
 
 ### Locally
 
-1. `git clone -b 0.16.0 https://github.com/archivesunleashed/docker-aut.git`
+1. `git clone -b 0.17.0 https://github.com/archivesunleashed/docker-aut.git`
 2. `cd docker-aut`
 3. `docker build -t aut .`
 4. `docker run --rm -it aut`
@@ -51,7 +51,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.1.1
+   /___/ .__/\_,_/_/ /_/\_\   version 2.3.2
       /_/
 
 Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_151)
