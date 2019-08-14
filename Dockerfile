@@ -8,7 +8,7 @@ LABEL website="http://archivesunleashed.org/"
 
 ## Build variables
 #########################
-ARG SPARK_VERSION=2.3.2
+ARG SPARK_VERSION=2.4.3
 
 # Git and Wget
 RUN apk add --update \
