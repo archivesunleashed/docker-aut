@@ -39,28 +39,29 @@ You can also build this Docker image locally with the following steps:
 3. `docker build -t aut .`
 4. `docker run --rm -it aut`
 
+### Overrides
+
+You can add any Spark flags to the build if you need too.
+
+```
+$ docker run --rm -it archivesunleashed/docker-aut:0.17.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.17.0" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+```
 
 Once the build finishes, you should see:
 
 ```bash
 $ docker run --rm -it aut
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-2017-12-08 00:48:47,200 [main] WARN  NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-2017-12-08 00:48:54,049 [main] WARN  ObjectStore - Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
-2017-12-08 00:48:54,167 [main] WARN  ObjectStore - Failed to get database default, returning NoSuchObjectException
-2017-12-08 00:48:55,002 [main] WARN  ObjectStore - Failed to get database global_temp, returning NoSuchObjectException
-Spark context Web UI available at http://172.17.0.2:4040
-Spark context available as 'sc' (master = local[*], app id = local-1512694127862).
+Spark context Web UI available at http://c1c9c5ad6970:4040
+Spark context available as 'sc' (master = local[*], app id = local-1565792045935).
 Spark session available as 'spark'.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.1.1
+   /___/ .__/\_,_/_/ /_/\_\   version 2.4.3
       /_/
-
-Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_151)
+         
+Using Scala version 2.11.12 (OpenJDK 64-Bit Server VM, Java 1.8.0_212)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
