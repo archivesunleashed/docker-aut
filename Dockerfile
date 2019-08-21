@@ -4,7 +4,7 @@ FROM maven:3-jdk-8-alpine
 # Metadata
 LABEL maintainer="Nick Ruest <ruestn@gmail.com>"
 LABEL description="Docker image for the Archives Unleashed Toolkit."
-LABEL website="http://archivesunleashed.org/"
+LABEL website="https://archivesunleashed.org/"
 
 ## Build variables
 #########################
@@ -25,4 +25,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.17.0"
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.18.0"
