@@ -4,9 +4,13 @@
 [![LICENSE](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](./LICENSE)
 [![Contribution Guidelines](http://img.shields.io/badge/CONTRIBUTING-Guidelines-blue.svg)](./CONTRIBUTING.md)
 
+## Attention
+
+The `master` branch aligns with the `master` branch of [The Archives Unleashed Toolkit](https://github.com/archivesunleashed/aut). It can be unstable at times. Stable [branches](https://github.com/archivesunleashed/docker-aut/branches) are available for each [AUT release](https://github.com/archivesunleashed/aut/releases).
+
 ## Introduction
 
-This is the Docker image for [Archives Unleashed Toolkit](https://github.com/archivesunleashed/aut). [AUT](https://github.com/archivesunleashed/aut) documentation can be found [here](http://archivesunleashed.org/aut/). If you need a hand installing Docker, check out our [Docker Install Instructions](https://github.com/archivesunleashed/docker-aut/wiki/Docker-Install-Instructions), and if you want a quick tutorial, check out our [Hands on With The Archives Unleashed Toolkit](https://github.com/archivesunleashed/docker-aut/wiki/Hands-on-With-The-Archives-Unleashed-Toolkit).
+This is the Docker image for [Archives Unleashed Toolkit](https://github.com/archivesunleashed/aut). [AUT](https://github.com/archivesunleashed/aut) documentation can be found [here](https://github.com/archivesunleashed/aut/wiki). If you need a hand installing Docker, check out our [Docker Install Instructions](https://github.com/archivesunleashed/aut/wiki/Docker-Install), and if you want a quick tutorial, check out our [Toolkit Lesson](https://github.com/archivesunleashed/aut/wiki/Toolkit-Lesson).
 
 The Archives Unleashed Toolkit is part of the broader [Archives Unleashed Project](http://archivesunleashed.org/).
 
