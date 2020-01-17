@@ -38,27 +38,25 @@ If you want to mount your own data:
 You can add any Spark flags to the build if you need too.
 
 ```
-$ docker run --rm -it archivesunleashed/docker-aut:0.18.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.18.0" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+$ docker run --rm -it archivesunleashed/docker-aut:0.18.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.18.1" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
 
 ```bash
 $ docker run --rm -it aut
+
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-2017-12-08 00:28:03,803 [main] WARN  NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-2017-12-08 00:28:10,965 [main] WARN  ObjectStore - Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
-2017-12-08 00:28:11,130 [main] WARN  ObjectStore - Failed to get database default, returning NoSuchObjectException
-2017-12-08 00:28:12,068 [main] WARN  ObjectStore - Failed to get database global_temp, returning NoSuchObjectException
-Spark context Web UI available at http://172.17.0.2:4040
-Spark context available as 'sc' (master = local[*], app id = local-1512692884451).
+Spark context Web UI available at http://fee0a4330af9:4040
+Spark context available as 'sc' (master = local[*], app id = local-1579273425545).
 Spark session available as 'spark'.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.4.3
+   /___/ .__/\_,_/_/ /_/\_\   version 2.4.4
       /_/
          
 Using Scala version 2.11.12 (OpenJDK 64-Bit Server VM, Java 1.8.0_212)
