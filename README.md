@@ -62,7 +62,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.4.3
+   /___/ .__/\_,_/_/ /_/\_\   version 2.4.4
       /_/
          
 Using Scala version 2.11.12 (OpenJDK 64-Bit Server VM, Java 1.8.0_212)
@@ -85,14 +85,13 @@ Type
 
 And then paste the following script in:
 
-```
-
+```scala
 import io.archivesunleashed._
 import io.archivesunleashed.matchbox._
 
 val r = RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc)
 .keepValidPages()
-.map(r => ExtractDomain(r.getUrl))
+.map(r => ExtractDomainRDD(r.getUrl))
 .countItems()
 .take(10)
 ```

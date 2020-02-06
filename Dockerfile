@@ -8,7 +8,7 @@ LABEL website="http://archivesunleashed.org/"
 
 ## Build variables
 #######################
-ARG SPARK_VERSION=2.4.3
+ARG SPARK_VERSION=2.4.4
 
 # Git and Wget
 RUN apk add --update \
@@ -31,4 +31,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.18.1-SNAPSHOT"
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.50.1-SNAPSHOT"
