@@ -18,6 +18,12 @@ RUN apk add --update \
 # Sample resources
 RUN git clone https://github.com/archivesunleashed/aut-resources.git /aut-resources
 
+# Build from source; Ivy has problems with non-maven repositories.
+#   - This is specifically for the Guava issues in our Tika fork
+RUN git clone --branch aut-0.50.0 https://github.com/archivesunleashed/aut.git \
+      && cd aut \
+      && mvn clean install
+
 # Spark shell
 RUN mkdir /spark \
     && cd /tmp \
@@ -25,4 +31,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.50.0" --repositories "https://jitpack.io"
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.50.0"
