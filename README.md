@@ -20,15 +20,15 @@ Install each of the following dependencies:
 
 ### Docker Hub
 
-`docker run --rm -it archivesunleashed/docker-aut:0.18.0`
+`docker run --rm -it archivesunleashed/docker-aut:0.50.0`
 
 If you want to mount your own data:
 
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.18.0`
+`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.50.0`
 
 ### Locally
 
-1. `git clone -b 0.18.0 https://github.com/archivesunleashed/docker-aut.git`
+1. `git clone -b 0.50.0 https://github.com/archivesunleashed/docker-aut.git`
 2. `cd docker-aut`
 3. `docker build -t aut .`
 4. `docker run --rm -it aut`
@@ -38,7 +38,7 @@ If you want to mount your own data:
 You can add any Spark flags to the build if you need too.
 
 ```
-$ docker run --rm -it archivesunleashed/docker-aut:0.18.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.18.1" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+$ docker run --rm -it archivesunleashed/docker-aut:0.50.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.18.1" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
@@ -78,7 +78,7 @@ import io.archivesunleashed.matchbox._
 
 val r = RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc)
 .keepValidPages()
-.map(r => ExtractDomain(r.getUrl))
+.map(r => ExtractDomainRDD(r.getUrl))
 .countItems()
 .take(10)
 
