@@ -11,9 +11,10 @@ LABEL website="http://archivesunleashed.org/"
 ARG SPARK_VERSION=2.4.5
 
 # Git and Wget
-RUN apk add --update \
+RUN apk --no-cache --virtual build-dependencies add --update \
     git \
-    wget
+    wget \
+    && apk add --update python
 
 # Sample resources
 RUN git clone https://github.com/archivesunleashed/aut-resources.git
@@ -30,5 +31,8 @@ RUN mkdir /spark \
     && wget -q "https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
+
+# Cleanup package manager
+RUN apk del build-dependencies
 
 CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.50.1-SNAPSHOT"

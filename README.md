@@ -45,13 +45,13 @@ You can also build this Docker image locally with the following steps:
 
 ### Overrides
 
-You can add any Spark flags to the build if you need too.
+You can add any Spark flags when starting the container, if you need too.
 
 ```
 $ docker run --rm -it archivesunleashed/docker-aut:0.17.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.17.0" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
-Once the build finishes, you should see:
+Once the container has started, you should see:
 
 ```bash
 $ docker run --rm -it aut
@@ -64,7 +64,7 @@ Welcome to
     _\ \/ _ \/ _ `/ __/  '_/
    /___/ .__/\_,_/_/ /_/\_\   version 2.4.4
       /_/
-         
+
 Using Scala version 2.11.12 (OpenJDK 64-Bit Server VM, Java 1.8.0_212)
 Type in expressions to have them evaluated.
 Type :help for more information.
@@ -72,6 +72,16 @@ Type :help for more information.
 scala>
 
 ```
+
+### Python - PySpark
+
+You can start a Python shell (pyspark) with the following command:
+
+``` shell
+docker run --rm -it -v "$(pwd)/your/datadir:/data" aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.50.1-SNAPSHOT-fatjar.jar
+```
+
+See [the official documentation](https://github.com/archivesunleashed/aut-docs/tree/master/current#the-archives-unleashed-toolkit-latest-documentation) for usage examples in Python.
 
 ## Example
 
