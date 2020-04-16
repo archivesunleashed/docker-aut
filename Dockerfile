@@ -22,10 +22,10 @@ RUN git clone https://github.com/archivesunleashed/aut-resources.git /aut-resour
 #   - This is specifically for the Guava issues in our Tika fork
 RUN git clone --branch aut-0.60.0 https://github.com/archivesunleashed/aut.git \
       && cd aut \
-      && mvn clean install
-# Yet another --packages work around
-RUN cd /root/.m2/repository/org/mortbay/jetty/servlet-api/2.5-20081211 \
-  && wget -q "https://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-20081211/servlet-api-2.5-20081211.jar"
+      && mvn clean install \
+      # Yet another --packages work around
+      && cd /root/.m2/repository/org/mortbay/jetty/servlet-api/2.5-20081211 \
+      && wget -q "https://repo1.maven.org/maven2/org/mortbay/jetty/servlet-api/2.5-20081211/servlet-api-2.5-20081211.jar"
 
 # Spark shell
 RUN mkdir /spark \
