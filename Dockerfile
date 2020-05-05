@@ -10,6 +10,11 @@ LABEL website="https://archivesunleashed.org/"
 #########################
 ARG SPARK_VERSION=2.4.5
 
+# Need this for Parquet support in Alpine.
+RUN apk update \
+      && apk add --no-cache libc6-compat \
+      && ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 
+
 # Git and Wget
 RUN apk add --update \
     git \
@@ -20,7 +25,7 @@ RUN git clone https://github.com/archivesunleashed/aut-resources.git /aut-resour
 
 # Build from source; Ivy has problems with non-maven repositories.
 #   - This is specifically for the Guava issues in our Tika fork
-RUN git clone --branch aut-0.60.0 https://github.com/archivesunleashed/aut.git \
+RUN git clone --branch aut-0.70.0 https://github.com/archivesunleashed/aut.git \
       && cd aut \
       && mvn clean install \
       # Yet another --packages work around
@@ -34,4 +39,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.60.0"
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.70.0"
