@@ -48,7 +48,7 @@ You can also build this Docker image locally with the following steps:
 You can add any Spark flags to the build if you need too.
 
 ```
-$ docker run --rm -it archivesunleashed/docker-aut:0.17.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.17.0" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.70.1-SNAPSHOT" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
@@ -62,7 +62,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.4.4
+   /___/ .__/\_,_/_/ /_/\_\   version 2.4.5
       /_/
          
 Using Scala version 2.11.12 (OpenJDK 64-Bit Server VM, Java 1.8.0_212)
