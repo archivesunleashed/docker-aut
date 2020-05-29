@@ -73,6 +73,63 @@ scala>
 
 ```
 
+## PySpark
+
+It is also possible to start an interactive PySpark console. This requires specifying Python bindings and Java/Scala packages, both of which are included in the Docker image under `/aut/target`.
+
+```bash
+$ docker run -it --rm archivesunleashed/docker-aut \
+  /spark/bin/pyspark \
+  --py-files /aut/target/aut.zip \
+  --jars /aut/target/aut-0.70.1-SNAPSHOT-fatjar.jar
+Python 3.6.9 (default, Oct 17 2019, 11:10:22) 
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+20/05/29 14:21:39 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 2.4.5
+      /_/
+
+Using Python version 3.6.9 (default, Oct 17 2019 11:10:22)
+SparkSession available as 'spark'.
+>>>
+```
+
+The example above loads version `0.70.1` of the Java/Scala packages. Your build may have packages in another version, to see what is available and select the right files, run the following.
+
+```bash
+$ docker run --rm --entrypoint=/bin/ls archivesunleashed/docker-aut -lh /aut/target
+apidocs
+archive-tmp
+aut-0.70.1-SNAPSHOT-fatjar.jar       # Java/Scala bindings
+aut-0.70.1-SNAPSHOT-javadoc.jar
+aut-0.70.1-SNAPSHOT-test-javadoc.jar
+aut-0.70.1-SNAPSHOT.jar
+aut.zip                              # Python bindings
+:
+```
+
+Specifying Java/Scala packages with `--jars` will use local (inside the container) JAR files.
+It is also possible to download these packages from maven central by specifying `--packages` instead of `--jars`.
+
+_Note: downloading packages is taking a while and must be done every time the container starts;
+using `--jars` is faster!_
+
+```bash
+$ docker run -it --rm archivesunleashed/docker-aut \
+  /spark/bin/pyspark \
+  --py-files /aut/target/aut.zip \
+  --packages "io.archivesunleashed:aut:0.70" # Download Java/Scala packages from maven central
+```
+
+See also https://github.com/archivesunleashed/aut#archives-unleashed-toolkit-with-pyspark.
+
 ## Example
 
 When the image is running, you will be brought to the Spark Shell interface. Try running the following command.
