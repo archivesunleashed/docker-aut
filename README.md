@@ -32,7 +32,7 @@ If you want to mount your own data, replace `/path/to/your/data` in the followin
 
 `docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut`
 
-You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut/tree/README#example).
+You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut#example).
 
 ### Locally
 
@@ -54,7 +54,6 @@ docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell -
 Once the build finishes, you should see:
 
 ```bash
-$ docker run --rm -it aut
 Spark context Web UI available at http://c1c9c5ad6970:4040
 Spark context available as 'sc' (master = local[*], app id = local-1565792045935).
 Spark session available as 'spark'.
@@ -73,15 +72,19 @@ scala>
 
 ```
 
-## PySpark
+### PySpark
 
-It is also possible to start an interactive PySpark console. This requires specifying Python bindings and Java/Scala packages, both of which are included in the Docker image under `/aut/target`.
+It is also possible to start an interactive PySpark console. This requires specifying Python bindings and the `aut` package, both of which are included in the Docker image under `/aut/target`.
+
+To lauch an interactive PySpark console:
+
+```
+docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.70.1-SNAPSHOT-fatjar.jar`
+```
+
+Once the build finishes you should see:
 
 ```bash
-$ docker run -it --rm archivesunleashed/docker-aut \
-  /spark/bin/pyspark \
-  --py-files /aut/target/aut.zip \
-  --jars /aut/target/aut-0.70.1-SNAPSHOT-fatjar.jar
 Python 3.6.9 (default, Oct 17 2019, 11:10:22) 
 [GCC 8.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
@@ -101,36 +104,12 @@ SparkSession available as 'spark'.
 >>>
 ```
 
-The example above loads version `0.70.1` of the Java/Scala packages. Your build may have packages in another version, to see what is available and select the right files, run the following.
-
-```bash
-$ docker run --rm --entrypoint=/bin/ls archivesunleashed/docker-aut -lh /aut/target
-apidocs
-archive-tmp
-aut-0.70.1-SNAPSHOT-fatjar.jar       # Java/Scala bindings
-aut-0.70.1-SNAPSHOT-javadoc.jar
-aut-0.70.1-SNAPSHOT-test-javadoc.jar
-aut-0.70.1-SNAPSHOT.jar
-aut.zip                              # Python bindings
-:
-```
-
-Specifying Java/Scala packages with `--jars` will use local (inside the container) JAR files.
-It is also possible to download these packages from maven central by specifying `--packages` instead of `--jars`.
-
-_Note: downloading packages is taking a while and must be done every time the container starts;
-using `--jars` is faster!_
-
-```bash
-$ docker run -it --rm archivesunleashed/docker-aut \
-  /spark/bin/pyspark \
-  --py-files /aut/target/aut.zip \
-  --packages "io.archivesunleashed:aut:0.70" # Download Java/Scala packages from maven central
-```
-
-See also https://github.com/archivesunleashed/aut#archives-unleashed-toolkit-with-pyspark.
+For more information, see the [Archives Unleashed Toolkit with PySpark](https://github.com/archivesunleashed/aut#archives-unleashed-toolkit-with-pyspark) of the Toolkit README.
 
 ## Example
+
+
+### Spark Shell (Scala)
 
 When the image is running, you will be brought to the Spark Shell interface. Try running the following command.
 
@@ -144,13 +123,8 @@ And then paste the following script in:
 
 ```scala
 import io.archivesunleashed._
-import io.archivesunleashed.matchbox._
 
-val r = RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc)
-.keepValidPages()
-.map(r => ExtractDomainRDD(r.getUrl))
-.countItems()
-.take(10)
+RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show(10)
 ```
 
 Press Ctrl+D in order to execute the script. You should then see the following:
@@ -158,17 +132,65 @@ Press Ctrl+D in order to execute the script. You should then see the following:
 ```
 // Exiting paste mode, now interpreting.
 
-import io.archivesunleashed.spark.matchbox._
-import io.archivesunleashed.spark.rdd.RecordRDD._
-r: Array[(String, Int)] = Array((www.equalvoice.ca,4644), (www.liberal.ca,1968), (greenparty.ca,732), (www.policyalternatives.ca,601), (www.fairvote.ca,465), (www.ndp.ca,417), (www.davidsuzuki.org,396), (www.canadiancrc.com,90), (www.gca.ca,40), (communist-party.ca,39))
++----------+--------------------+--------------------+--------------------+     
+|crawl_date|                 src|                dest|              anchor|
++----------+--------------------+--------------------+--------------------+
+|  20091218|http://www.equalv...|http://www.equalv...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
+|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
+|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
+|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
+|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
+|  20091218|http://www.equalv...|http://www.snapde...|                    |
+|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
+|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
+|  20091218|http://www.libera...|http://www.libera...|        Introduction|
++----------+--------------------+--------------------+--------------------+
+only showing top 10 rows
 
-scala>
+import io.archivesunleashed._
 
+scala> 
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
 
 To quit Spark Shell, you can exit using <kbd>CTRL</kbd>+<kbd>c</kbd>.
+
+### PySpark
+
+When the images is running, you will be brought to the PySpark interface. Try running the following commands:
+
+```python
+from aut import *
+WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10)
+```
+
+You should then see the following:
+
+```
++----------+--------------------+--------------------+--------------------+
+|crawl_date|                 src|                dest|              anchor|
++----------+--------------------+--------------------+--------------------+
+|  20091218|http://www.equalv...|http://www.equalv...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
+|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
+|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
+|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
+|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
+|  20091218|http://www.equalv...|http://www.snapde...|                    |
+|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
+|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
+|  20091218|http://www.libera...|http://www.libera...|        Introduction|
++----------+--------------------+--------------------+--------------------+
+only showing top 10 rows
+
+>>>
+```
+
+In this case, things are working! Try substituting your own data (mounted using the command above).
+
+To quit the PySpark console, you can exit using <kbd>CTRL</kbd>+<kbd>c</kbd>.
 
 ## Resources
 
