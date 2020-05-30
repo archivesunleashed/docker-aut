@@ -13,12 +13,14 @@ ARG SPARK_VERSION=2.4.5
 # Need this for Parquet support in Alpine.
 RUN apk update \
       && apk add --no-cache libc6-compat \
-      && ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 
+      && ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2
 
 # Git and Wget
-RUN apk add --update \
+RUN apk --no-cache --virtual build-dependencies add --update \
     git \
-    wget
+    wget \
+    && apk add python3 \
+    && ln -sf /usr/bin/python3 /usr/local/bin/python
 
 # Sample resources
 RUN git clone https://github.com/archivesunleashed/aut-resources.git /aut-resources
@@ -38,5 +40,7 @@ RUN mkdir /spark \
     && wget -q "https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
+
+RUN apk del build-dependencies
 
 CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.70.0"
