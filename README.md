@@ -104,8 +104,6 @@ SparkSession available as 'spark'.
 >>>
 ```
 
-For more information, see the [Archives Unleashed Toolkit with PySpark](https://github.com/archivesunleashed/aut#archives-unleashed-toolkit-with-pyspark) of the Toolkit README.
-
 ## Example
 
 
