@@ -27,7 +27,7 @@ RUN git clone https://github.com/archivesunleashed/aut-resources.git /aut-resour
 
 # Build from source; Ivy has problems with non-maven repositories.
 #   - This is specifically for the Guava issues in our Tika fork
-RUN git clone --branch aut-0.70.0 https://github.com/archivesunleashed/aut.git \
+RUN git clone --branch aut-0.80.0 https://github.com/archivesunleashed/aut.git \
       && cd aut \
       && mvn clean install \
       # Yet another --packages work around
@@ -43,4 +43,4 @@ RUN mkdir /spark \
 
 RUN apk del build-dependencies
 
-CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.70.0"
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.80.0"

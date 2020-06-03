@@ -20,15 +20,15 @@ Install each of the following dependencies:
 
 ### Docker Hub
 
-`docker run --rm -it archivesunleashed/docker-aut:0.70.0`
+`docker run --rm -it archivesunleashed/docker-aut:0.80.0`
 
 If you want to mount your own data:
 
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.70.0`
+`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.80.0`
 
 ### Locally
 
-1. `git clone -b 0.70.0 https://github.com/archivesunleashed/docker-aut.git`
+1. `git clone -b 0.80.0 https://github.com/archivesunleashed/docker-aut.git`
 2. `cd docker-aut`
 3. `docker build -t aut .`
 4. `docker run --rm -it aut`
@@ -38,7 +38,7 @@ If you want to mount your own data:
 You can add any Spark flags to the build if you need too.
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:0.70.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.70.0" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it archivesunleashed/docker-aut:0.80.0 /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.80.0" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
@@ -69,7 +69,7 @@ It is also possible to start an interactive PySpark console. This requires speci
 To lauch an interactive PySpark console:
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:0.70.0 /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.70.0-fatjar.jar`
+docker run --rm -it archivesunleashed/docker-aut:0.80.0 /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.80.0-fatjar.jar`
 ```
 
 Once the build finishes you should see:
@@ -122,16 +122,16 @@ Press Ctrl+D in order to execute the script. You should then see the following:
 +----------+--------------------+--------------------+--------------------+     
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
-|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
-|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
-|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
-|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
-|  20091218|http://www.equalv...|http://www.snapde...|                    |
-|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
-|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
-|  20091218|http://www.libera...|http://www.libera...|        Introduction|
+|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
+|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
+|  20060622|http://www.ppforu...|http://www.adobe....|                    |
+|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
+|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
+|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
+|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
+|  20060622|http://communist-...|http://www.calend...|                    |
+|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
+|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
@@ -150,29 +150,29 @@ When the images is running, you will be brought to the PySpark interface. Try ru
 
 ```python
 from aut import *
-WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").image_links().show(10)
+WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10)
 ```
 
 You should then see the following:
 
 ```
 +----------+--------------------+--------------------+--------------------+     
-|crawl_date|                 src|           image_url|            alt_text|
+|crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20091218|http://www.equalv...|http://www.equalv...|         Equal Voice|
-|  20091218|http://www.equalv...|http://www.equalv...|                 RSS|
-|  20091218|http://www.equalv...|http://www.equalv...|Equal Voice Promo...|
-|  20091218|http://www.equalv...|http://www.equalv...|       EV Speaks Out|
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|         Experiences|
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|        EV in Action|
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
+|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
+|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
+|  20060622|http://www.ppforu...|http://www.adobe....|                    |
+|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
+|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
+|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
+|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
+|  20060622|http://communist-...|http://www.calend...|                    |
+|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
+|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
->>>
+>>> 
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
