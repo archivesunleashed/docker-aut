@@ -207,6 +207,7 @@ Press Ctrl+D in order to execute the script. You should then see the following:
 
 ```
 +----------+--------------------+--------------------+--------------------+
+>>>>>>> 16b1756... Updates for aut-0.80.0 release.
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
 |  20060622|http://www.gca.ca...|http://www.cleann...|                    |
@@ -254,41 +255,6 @@ You should then see the following:
 |  20060622|http://communist-...|http://www.calend...|                    |
 |  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
 |  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
-+----------+--------------------+--------------------+--------------------+
-only showing top 10 rows
-
->>>
-```
-
-In this case, things are working! Try substituting your own data (mounted using the command above).
-
-To quit the PySpark console, you can exit using <kbd>CTRL</kbd>+<kbd>c</kbd>.
-
-### PySpark
-
-When the images is running, you will be brought to the PySpark interface. Try running the following commands:
-
-```python
-from aut import *
-WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10)
-```
-
-You should then see the following:
-
-```
-+----------+--------------------+--------------------+--------------------+
-|crawl_date|                 src|                dest|              anchor|
-+----------+--------------------+--------------------+--------------------+
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
-|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
-|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
-|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
-|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
-|  20091218|http://www.equalv...|http://www.snapde...|                    |
-|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
-|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
-|  20091218|http://www.libera...|http://www.libera...|        Introduction|
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
