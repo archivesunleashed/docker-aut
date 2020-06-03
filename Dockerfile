@@ -44,4 +44,4 @@ RUN mkdir /spark \
 
 RUN apk del build-dependencies
 
-CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.70.1-SNAPSHOT"
+CMD /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.80.1-SNAPSHOT"

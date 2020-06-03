@@ -48,7 +48,7 @@ You can also build this Docker image locally with the following steps:
 You can add any Spark flags to the build if you need too.
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.70.1-SNAPSHOT" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.80.1-SNAPSHOT" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
@@ -79,7 +79,7 @@ It is also possible to start an interactive PySpark console. This requires speci
 To lauch an interactive PySpark console:
 
 ```
-docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.70.1-SNAPSHOT-fatjar.jar`
+docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.80.1-SNAPSHOT-fatjar.jar`
 ```
 
 Once the build finishes you should see:
@@ -128,27 +128,23 @@ RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show
 Press Ctrl+D in order to execute the script. You should then see the following:
 
 ```
-// Exiting paste mode, now interpreting.
-
 +----------+--------------------+--------------------+--------------------+     
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
-|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
-|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
-|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
-|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
-|  20091218|http://www.equalv...|http://www.snapde...|                    |
-|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
-|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
-|  20091218|http://www.libera...|http://www.libera...|        Introduction|
+|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
+|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
+|  20060622|http://www.ppforu...|http://www.adobe....|                    |
+|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
+|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
+|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
+|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
+|  20060622|http://communist-...|http://www.calend...|                    |
+|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
+|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
 import io.archivesunleashed._
-
-scala> 
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
@@ -167,23 +163,23 @@ WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10
 You should then see the following:
 
 ```
-+----------+--------------------+--------------------+--------------------+
++----------+--------------------+--------------------+--------------------+     
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
-|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
-|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
-|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
-|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
-|  20091218|http://www.equalv...|http://www.snapde...|                    |
-|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
-|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
-|  20091218|http://www.libera...|http://www.libera...|        Introduction|
+|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
+|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
+|  20060622|http://www.ppforu...|http://www.adobe....|                    |
+|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
+|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
+|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
+|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
+|  20060622|http://communist-...|http://www.calend...|                    |
+|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
+|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
->>>
+>>> 
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
