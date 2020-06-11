@@ -8,7 +8,7 @@ LABEL website="http://archivesunleashed.org/"
 
 ## Build variables
 #######################
-ARG SPARK_VERSION=2.4.5
+ARG SPARK_VERSION=2.4.6
 
 # Need this for Parquet support in Alpine.
 RUN apk update \
