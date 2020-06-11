@@ -210,20 +210,22 @@ Press Ctrl+D in order to execute the script. You should then see the following:
 >>>>>>> 16b1756... Updates for aut-0.80.0 release.
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
-|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
-|  20060622|http://www.ppforu...|http://www.adobe....|                    |
-|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
-|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
-|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
-|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
-|  20060622|http://communist-...|http://www.calend...|                    |
-|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
-|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
+|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
+|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
+|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
+|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
+|  20091218|http://www.equalv...|http://www.snapde...|                    |
+|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
+|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
+|  20091218|http://www.libera...|http://www.libera...|        Introduction|
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
 import io.archivesunleashed._
+
+scala>
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
@@ -245,16 +247,16 @@ You should then see the following:
 +----------+--------------------+--------------------+--------------------+
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
-|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
-|  20060622|http://www.ppforu...|http://www.adobe....|                    |
-|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
-|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
-|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
-|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
-|  20060622|http://communist-...|http://www.calend...|                    |
-|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
-|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
+|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
+|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
+|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
+|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
+|  20091218|http://www.equalv...|http://www.snapde...|                    |
+|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
+|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
+|  20091218|http://www.libera...|http://www.libera...|        Introduction|
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
