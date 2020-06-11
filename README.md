@@ -51,7 +51,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.4.5
+   /___/ .__/\_,_/_/ /_/\_\   version 2.4.6
       /_/
          
 Using Scala version 2.11.12 (OpenJDK 64-Bit Server VM, Java 1.8.0_212)
@@ -69,7 +69,7 @@ It is also possible to start an interactive PySpark console. This requires speci
 To lauch an interactive PySpark console:
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:0.80.0 /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.80.0-fatjar.jar`
+docker run --rm -it archivesunleashed/docker-aut:0.80.0 /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.80.0-fatjar.jar
 ```
 
 Once the build finishes you should see:
@@ -122,16 +122,16 @@ Press Ctrl+D in order to execute the script. You should then see the following:
 +----------+--------------------+--------------------+--------------------+     
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
-|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
-|  20060622|http://www.ppforu...|http://www.adobe....|                    |
-|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
-|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
-|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
-|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
-|  20060622|http://communist-...|http://www.calend...|                    |
-|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
-|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
+|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
+|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
+|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
+|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
+|  20091218|http://www.equalv...|http://www.snapde...|                    |
+|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
+|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
+|  20091218|http://www.libera...|http://www.libera...|        Introduction|
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
@@ -159,16 +159,16 @@ You should then see the following:
 +----------+--------------------+--------------------+--------------------+     
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
-|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
-|  20060622|http://www.ppforu...|http://www.adobe....|                    |
-|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
-|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
-|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
-|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
-|  20060622|http://communist-...|http://www.calend...|                    |
-|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
-|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|                    |
+|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
+|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
+|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
+|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
+|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
+|  20091218|http://www.equalv...|http://www.snapde...|                    |
+|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
+|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
+|  20091218|http://www.libera...|http://www.libera...|        Introduction|
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
