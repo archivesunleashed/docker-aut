@@ -54,8 +54,19 @@ docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell -
 Once the build finishes, you should see:
 
 ```bash
-Spark context Web UI available at http://c1c9c5ad6970:4040
-Spark context available as 'sc' (master = local[*], app id = local-1565792045935).
+20/06/18 09:43:08 WARN Utils: Your hostname, bomba resolves to a loopback address: 127.0.1.1; using 192.168.4.94 instead (on interface wlp2s0)
+20/06/18 09:43:08 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/nruest/bin/spark-3.0.0-bin-hadoop2.7/jars/spark-unsafe_2.12-3.0.0.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+20/06/18 09:43:08 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+Spark context Web UI available at http://192.168.4.94:4040
+Spark context available as 'sc' (master = local[*], app id = local-1592487792942).
 Spark session available as 'spark'.
 Welcome to
       ____              __
@@ -210,22 +221,20 @@ Press Ctrl+D in order to execute the script. You should then see the following:
 >>>>>>> 16b1756... Updates for aut-0.80.0 release.
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
-|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
-|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
-|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
-|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
-|  20091218|http://www.equalv...|http://www.snapde...|                    |
-|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
-|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
-|  20091218|http://www.libera...|http://www.libera...|        Introduction|
+|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
+|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
+|  20060622|http://www.ppforu...|http://www.adobe....|                    |
+|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
+|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
+|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
+|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
+|  20060622|http://communist-...|http://www.calend...|                    |
+|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
+|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
 import io.archivesunleashed._
-
-scala>
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
@@ -247,16 +256,16 @@ You should then see the following:
 +----------+--------------------+--------------------+--------------------+
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
-|  20091218|http://www.equalv...|http://www.equalv...|                    |
-|  20091218|http://www.equalv...|http://www.equalv...|       RSS SUBSCRIBE|
-|  20091218|http://www.equalv...|http://www.equalv...|Bulletin d’AVE - ...|
-|  20091218|http://www.equalv...|http://www.equalv...|MORE ABOUT EV'S Y...|
-|  20091218|http://www.equalv...|http://www.thesta...|Coyle: Honouring ...|
-|  20091218|http://www.equalv...|http://gettingtot...|Getting to the Ga...|
-|  20091218|http://www.equalv...|http://www.snapde...|                    |
-|  20091218|http://www.libera...|http://www.libera...|Liberal Party of ...|
-|  20091218|http://www.libera...|http://www.libera...|   Michael Ignatieff|
-|  20091218|http://www.libera...|http://www.libera...|        Introduction|
+|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
+|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
+|  20060622|http://www.ppforu...|http://www.adobe....|                    |
+|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
+|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
+|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
+|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
+|  20060622|http://communist-...|http://www.calend...|                    |
+|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
+|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
