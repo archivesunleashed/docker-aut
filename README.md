@@ -95,17 +95,15 @@ docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /
 Once the build finishes you should see:
 
 ```bash
-Python 3.7.3 (default, Mar 27 2019, 22:11:17) 
-[GCC 7.3.0] :: Anaconda, Inc. on linux
+Python 3.7.3 (default, Dec 20 2019, 18:57:59) 
+[GCC 8.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
-20/06/18 09:42:04 WARN Utils: Your hostname, bomba resolves to a loopback address: 127.0.1.1; using 192.168.4.94 instead (on interface wlp2s0)
-20/06/18 09:42:04 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
 WARNING: An illegal reflective access operation has occurred
-WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/nruest/bin/spark-3.0.0-bin-hadoop2.7/jars/spark-unsafe_2.12-3.0.0.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/spark/jars/spark-unsafe_2.12-3.0.0.jar) to constructor java.nio.DirectByteBuffer(long,int)
 WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-20/06/18 09:42:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+20/06/18 14:02:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
@@ -116,7 +114,7 @@ Welcome to
    /__ / .__/\_,_/_/ /_/\_\   version 3.0.0
       /_/
 
-Using Python version 3.7.3 (default, Mar 27 2019 22:11:17)
+Using Python version 3.7.3 (default, Dec 20 2019 18:57:59)
 SparkSession available as 'spark'.
 >>> 
 ```

@@ -10,10 +10,15 @@ LABEL website="http://archivesunleashed.org/"
 #######################
 ARG SPARK_VERSION=3.0.0
 
+# Install Python3
 RUN set -eux; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
 		python3
+
+# Set Python3 as default Python
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 1 \
+      && update-alternatives --install /usr/bin/python python /usr/bin/python3 2
 
 # Sample resources
 RUN git clone https://github.com/archivesunleashed/aut-resources.git
