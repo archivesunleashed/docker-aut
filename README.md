@@ -74,12 +74,12 @@ Welcome to
     _\ \/ _ \/ _ `/ __/  '_/
    /___/ .__/\_,_/_/ /_/\_\   version 3.0.0
       /_/
-         
+
 Using Scala version 2.12.10 (OpenJDK 64-Bit Server VM, Java 11.0.7)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
-scala> 
+scala>
 ```
 
 ### PySpark
@@ -95,7 +95,7 @@ docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /
 Once the build finishes you should see:
 
 ```bash
-Python 3.7.3 (default, Dec 20 2019, 18:57:59) 
+Python 3.7.3 (default, Dec 20 2019, 18:57:59)
 [GCC 8.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 WARNING: An illegal reflective access operation has occurred
@@ -116,11 +116,10 @@ Welcome to
 
 Using Python version 3.7.3 (default, Dec 20 2019 18:57:59)
 SparkSession available as 'spark'.
->>> 
+>>>
 ```
 
 ## Example
-
 
 ### Spark Shell (Scala)
 
@@ -143,7 +142,7 @@ RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show
 Press Ctrl+D in order to execute the script. You should then see the following:
 
 ```
-+----------+--------------------+--------------------+--------------------+     
++----------+--------------------+--------------------+--------------------+
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
 |  20060622|http://www.gca.ca...|http://www.cleann...|                    |
@@ -178,7 +177,7 @@ WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10
 You should then see the following:
 
 ```
-+----------+--------------------+--------------------+--------------------+     
++----------+--------------------+--------------------+--------------------+
 |crawl_date|                 src|                dest|              anchor|
 +----------+--------------------+--------------------+--------------------+
 |  20060622|http://www.gca.ca...|http://www.cleann...|                    |
@@ -194,7 +193,7 @@ You should then see the following:
 +----------+--------------------+--------------------+--------------------+
 only showing top 10 rows
 
->>> 
+>>>
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
