@@ -128,8 +128,6 @@ $ docker run -it --rm archivesunleashed/docker-aut \
   --packages "io.archivesunleashed:aut:0.70" # Download Java/Scala packages from maven central
 ```
 
-See also https://github.com/archivesunleashed/aut#archives-unleashed-toolkit-with-pyspark.
-
 ## Example
 
 When the image is running, you will be brought to the Spark Shell interface. Try running the following command.
