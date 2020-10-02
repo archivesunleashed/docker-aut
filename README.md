@@ -51,6 +51,8 @@ You can add any Spark flags to the build if you need too.
 docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.80.1-SNAPSHOT" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
+### Spark Shell (Scala)
+
 Once the build finishes, you should see:
 
 ```bash
@@ -81,6 +83,48 @@ Type :help for more information.
 
 scala>
 ```
+
+When the image is running, you will be brought to the Spark Shell interface. Try running the following command.
+
+Type
+
+```
+:paste
+```
+
+And then paste the following script in:
+
+```scala
+import io.archivesunleashed._
+
+RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show(10)
+```
+
+Press Ctrl+D in order to execute the script. You should then see the following:
+
+```
++----------+--------------------+--------------------+--------------------+
+|crawl_date|                 src|                dest|              anchor|
++----------+--------------------+--------------------+--------------------+
+|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
+|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
+|  20060622|http://www.ppforu...|http://www.adobe....|                    |
+|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
+|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
+|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
+|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
+|  20060622|http://communist-...|http://www.calend...|                    |
+|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
+|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
++----------+--------------------+--------------------+--------------------+
+only showing top 10 rows
+
+>>>
+```
+~
+In this case, things are working! Try substituting your own data (mounted using the command above).
+
+To quit Spark Shell, you can exit using <kbd>CTRL</kbd>+<kbd>c</kbd>.
 
 ### PySpark
 
@@ -119,10 +163,43 @@ SparkSession available as 'spark'.
 >>>
 ```
 
+Try running the following commands:
+
+```python
+from aut import *
+WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10)
+```
+
+You should then see the following:
+
+```
++----------+--------------------+--------------------+--------------------+
+|crawl_date|                 src|                dest|              anchor|
++----------+--------------------+--------------------+--------------------+
+|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
+|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
+|  20060622|http://www.ppforu...|http://www.adobe....|                    |
+|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
+|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
+|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
+|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
+|  20060622|http://communist-...|http://www.calend...|                    |
+|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
+|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
++----------+--------------------+--------------------+--------------------+
+only showing top 10 rows
+
+>>>
+```
+
+In this case, things are working! Try substituting your own data (mounted using the command above).
+
+To quit the PySpark console, you can exit using <kbd>CTRL</kbd>+<kbd>c</kbd>.
+
 For more information, see the [Archives Unleashed Toolkit with PySpark](https://github.com/archivesunleashed/aut#archives-unleashed-toolkit-with-pyspark) of the Toolkit README.
 
-Specifying Java/Scala packages with `--jars` will use local (inside the container) JAR files.
-It is also possible to download these packages from maven central by specifying `--packages` instead of `--jars`.
+_Specifying Java/Scala packages with `--jars` will use local (inside the container) JAR files.
+It is also possible to download these packages from maven central by specifying `--packages` instead of `--jars`._
 
 _Note: downloading packages is taking a while and must be done every time the container starts;
 using `--jars` is faster!_
@@ -133,6 +210,7 @@ $ docker run -it --rm archivesunleashed/docker-aut \
   --py-files /aut/target/aut.zip \
   --packages "io.archivesunleashed:aut:0.70" # Download Java/Scala packages from maven central
 ```
+
 ### Running Python Scripts through `spark-submit`
 
 Using the Shell it is, for example, not possible to save a script and run it again, at a later time.
@@ -153,8 +231,6 @@ WebArchive(sc, sqlContext, "/in").all() \      # process WARCs residing in /in, 
   .select("url") \
   .write.text("/out/result/")
 ```
-
-## Example
 
 The Python script to pass `spark-submit` exists outside the Docker container, the same holds for WARC files to be processed by that script;
 finally, the results generated by the script must be retained after the Docker container exists and gets removed.
@@ -195,86 +271,6 @@ The `--driver-memory` flag is optional; when processing large amounts of data, i
 Inside the script, which is running inside the container, the WARC files can be found in `/in`, results should be written into `/out` and the script itself resides in `/script`.
 
 After executing the script, the results produced can be found inside `out-local`.
-
-### Spark Shell (Scala)
-
-When the image is running, you will be brought to the Spark Shell interface. Try running the following command.
-
-Type
-
-```
-:paste
-```
-
-And then paste the following script in:
-
-```scala
-import io.archivesunleashed._
-
-RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show(10)
-```
-
-Press Ctrl+D in order to execute the script. You should then see the following:
-
-```
-+----------+--------------------+--------------------+--------------------+
->>>>>>> 16b1756... Updates for aut-0.80.0 release.
-|crawl_date|                 src|                dest|              anchor|
-+----------+--------------------+--------------------+--------------------+
-|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
-|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
-|  20060622|http://www.ppforu...|http://www.adobe....|                    |
-|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
-|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
-|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
-|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
-|  20060622|http://communist-...|http://www.calend...|                    |
-|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
-|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
-+----------+--------------------+--------------------+--------------------+
-only showing top 10 rows
-
-import io.archivesunleashed._
-```
-
-In this case, things are working! Try substituting your own data (mounted using the command above).
-
-To quit Spark Shell, you can exit using <kbd>CTRL</kbd>+<kbd>c</kbd>.
-
-### PySpark
-
-When the images is running, you will be brought to the PySpark interface. Try running the following commands:
-
-```python
-from aut import *
-WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10)
-```
-
-You should then see the following:
-
-```
-+----------+--------------------+--------------------+--------------------+
-|crawl_date|                 src|                dest|              anchor|
-+----------+--------------------+--------------------+--------------------+
-|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
-|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
-|  20060622|http://www.ppforu...|http://www.adobe....|                    |
-|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
-|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
-|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
-|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
-|  20060622|http://communist-...|http://www.calend...|                    |
-|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
-|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
-+----------+--------------------+--------------------+--------------------+
-only showing top 10 rows
-
->>>
-```
-
-In this case, things are working! Try substituting your own data (mounted using the command above).
-
-To quit the PySpark console, you can exit using <kbd>CTRL</kbd>+<kbd>c</kbd>.
 
 ## Resources
 
