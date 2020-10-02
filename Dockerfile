@@ -20,7 +20,7 @@ RUN apk update \
 RUN apk --no-cache --virtual build-dependencies add --update \
     git \
     wget \
-    && apk add python3 \
+    && apk add python3 py3-numpy \
     && ln -sf /usr/bin/python3 /usr/local/bin/python
 
 # Sample resources
