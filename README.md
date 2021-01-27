@@ -4,13 +4,10 @@
 [![LICENSE](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](./LICENSE)
 [![Contribution Guidelines](http://img.shields.io/badge/CONTRIBUTING-Guidelines-blue.svg)](./CONTRIBUTING.md)
 
-## Attention
-
-The `master` branch aligns with the `master` branch of [The Archives Unleashed Toolkit](https://github.com/archivesunleashed/aut). It can be unstable at times. Stable [branches](https://github.com/archivesunleashed/docker-aut/branches) are available for each [AUT release](https://github.com/archivesunleashed/aut/releases).
 
 ## Introduction
 
-This is the Docker image for [Archives Unleashed Toolkit](https://github.com/archivesunleashed/aut). [AUT](https://github.com/archivesunleashed/aut) documentation can be found [here](https://github.com/archivesunleashed/aut-docs/tree/master/current). If you need a hand installing Docker, check out our [Docker Install Instructions](https://github.com/archivesunleashed/aut/wiki/Docker-Install), and if you want a quick tutorial, check out our [Toolkit Lesson](https://github.com/archivesunleashed/aut-docs/blob/master/current/toolkit-walkthrough.md).
+This is the Docker image for [Archives Unleashed Toolkit](https://github.com/archivesunleashed/aut). [AUT](https://github.com/archivesunleashed/aut) documentation can be found [here](https://aut.docs.archivesunleashed.org/docs/home). If you need a hand installing Docker, check out our [Docker Install Instructions](https://github.com/archivesunleashed/aut/wiki/Docker-Install), and if you want a quick tutorial, check out our [Toolkit Walkthrough](https://aut.docs.archivesunleashed.org/docs/toolkit-walkthrough).
 
 The Archives Unleashed Toolkit is part of the broader [Archives Unleashed Project](http://archivesunleashed.org/).
 
@@ -26,11 +23,11 @@ Install the following dependencies:
 
 Make sure that Docker is running. Run the following command to launch the Apache Spark shell with `aut` available:
 
-`docker run --rm -it archivesunleashed/docker-aut`
+`docker run --rm -it archivesunleashed/docker-auti:0.90.0`
 
 If you want to mount your own data, replace `/path/to/your/data` in the following command with the directory where your ARC or WARC files are contained.
 
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut`
+`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.90.0`
 
 You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut#example).
 
@@ -48,7 +45,7 @@ You can also build this Docker image locally with the following steps:
 You can add any Spark flags to the build if you need too.
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.80.1-SNAPSHOT" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --jars /aut/aut-0.90.0-fatjar.jar --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
@@ -72,7 +69,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 3.0.0
+   /___/ .__/\_,_/_/ /_/\_\   version 3.0.1
       /_/
          
 Using Scala version 2.12.10 (OpenJDK 64-Bit Server VM, Java 11.0.7)
@@ -89,7 +86,7 @@ It is also possible to start an interactive PySpark console. This requires speci
 To lauch an interactive PySpark console:
 
 ```
-docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.80.1-SNAPSHOT-fatjar.jar
+docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/aut-0.90.0-fatjar.jar
 ```
 
 Once the build finishes you should see:
@@ -111,7 +108,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /__ / .__/\_,_/_/ /_/\_\   version 3.0.0
+   /__ / .__/\_,_/_/ /_/\_\   version 3.0.1
       /_/
 
 Using Python version 3.7.3 (default, Dec 20 2019 18:57:59)

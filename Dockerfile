@@ -24,10 +24,9 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 1 \
 RUN git clone https://github.com/archivesunleashed/aut-resources.git
 
 # Archives Unleashed Toolkit
-RUN git clone https://github.com/archivesunleashed/aut.git /aut \
+RUN mkdir /aut \
     && cd /aut \
-    && export JAVA_OPTS=-Xmx512m \
-    && mvn clean install
+    && wget https://github.com/archivesunleashed/aut/releases/download/aut-0.90.0/aut-0.90.0-fatjar.jar
 
 # Spark shell
 RUN mkdir /spark \
@@ -36,4 +35,5 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --jars /aut/target/aut-0.90.1-SNAPSHOT-fatjar.jar
+
+CMD /spark/bin/spark-shell --jars /aut/aut-0.90.0-fatjar.jar
