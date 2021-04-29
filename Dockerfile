@@ -8,7 +8,7 @@ LABEL website="http://archivesunleashed.org/"
 
 ## Build variables
 #######################
-ARG SPARK_VERSION=3.0.1
+ARG SPARK_VERSION=3.0.2
 
 # Install Python3
 RUN set -eux; \
@@ -36,4 +36,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --jars /aut/target/aut-0.90.1-SNAPSHOT-fatjar.jar
+CMD /spark/bin/spark-shell --jars /aut/target/aut-0.90.2-SNAPSHOT-fatjar.jar
