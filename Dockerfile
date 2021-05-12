@@ -8,7 +8,7 @@ LABEL website="http://archivesunleashed.org/"
 
 ## Build variables
 #######################
-ARG SPARK_VERSION=3.0.2
+ARG SPARK_VERSION=3.1.1
 
 # Install Python3
 RUN set -eux; \
@@ -26,7 +26,7 @@ RUN git clone https://github.com/archivesunleashed/aut-resources.git
 # Archives Unleashed Toolkit
 RUN mkdir /aut \
     && cd /aut \
-    && wget https://github.com/archivesunleashed/aut/releases/download/aut-0.90.1/aut-0.90.1-fatjar.jar
+    && wget https://github.com/archivesunleashed/aut/releases/download/aut-0.90.2/aut-0.90.2-fatjar.jar
 
 # Spark shell
 RUN mkdir /spark \
@@ -36,4 +36,4 @@ RUN mkdir /spark \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
 
-CMD /spark/bin/spark-shell --jars /aut/aut-0.90.1-fatjar.jar
+CMD /spark/bin/spark-shell --jars /aut/aut-0.90.2-fatjar.jar
