@@ -10,16 +10,6 @@ LABEL website="http://archivesunleashed.org/"
 #######################
 ARG SPARK_VERSION=3.1.1
 
-# Install Python3
-RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-		python3
-
-# Set Python3 as default Python
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 1 \
-      && update-alternatives --install /usr/bin/python python /usr/bin/python3 2
-
 # Sample resources
 RUN git clone https://github.com/archivesunleashed/aut-resources.git
 
@@ -36,4 +26,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --jars /aut/target/aut-0.90.3-SNAPSHOT-fatjar.jar
+CMD /spark/bin/spark-shell --jars /aut/target/aut-0.90.4-SNAPSHOT-fatjar.jar
