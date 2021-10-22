@@ -23,11 +23,11 @@ Install the following dependencies:
 
 Make sure that Docker is running. Run the following command to launch the Apache Spark shell with `aut` available:
 
-`docker run --rm -it archivesunleashed/docker-auti:0.90.2`
+`docker run --rm -it archivesunleashed/docker-auti:0.90.3`
 
 If you want to mount your own data, replace `/path/to/your/data` in the following command with the directory where your ARC or WARC files are contained.
 
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.90.2`
+`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.90.3`
 
 You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut#example).
 
@@ -45,7 +45,7 @@ You can also build this Docker image locally with the following steps:
 You can add any Spark flags to the build if you need too.
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --jars /aut/aut-0.90.2-fatjar.jar --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --jars /aut/aut-0.90.3-fatjar.jar --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
@@ -81,12 +81,12 @@ scala>
 
 ### PySpark
 
-It is also possible to start an interactive PySpark console. This requires specifying Python bindings and the `aut` package, both of which are included in the Docker image under `/aut/target`.
+It is also possible to start an interactive PySpark console. This requires specifying Python bindings and the `aut` package, both of which are included in the Docker image under `/aut`.
 
 To lauch an interactive PySpark console:
 
 ```
-docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/aut-0.90.2-fatjar.jar
+docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/aut-0.90.3.zip --jars /aut/aut-0.90.3-fatjar.jar
 ```
 
 Once the build finishes you should see:
