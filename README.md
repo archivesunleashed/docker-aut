@@ -23,11 +23,11 @@ Install the following dependencies:
 
 Make sure that Docker is running. Run the following command to launch the Apache Spark shell with `aut` available:
 
-`docker run --rm -it archivesunleashed/docker-auti:0.90.3`
+`docker run --rm -it archivesunleashed/docker-auti:0.90.4`
 
 If you want to mount your own data, replace `/path/to/your/data` in the following command with the directory where your ARC or WARC files are contained.
 
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.90.3`
+`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut:0.90.4`
 
 You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut#example).
 
@@ -45,34 +45,32 @@ You can also build this Docker image locally with the following steps:
 You can add any Spark flags to the build if you need too.
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --jars /aut/aut-0.90.3-fatjar.jar --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --jars /aut/aut-0.90.4-fatjar.jar --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
 
 ```bash
-20/06/18 09:43:08 WARN Utils: Your hostname, bomba resolves to a loopback address: 127.0.1.1; using 192.168.4.94 instead (on interface wlp2s0)
-20/06/18 09:43:08 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
 WARNING: An illegal reflective access operation has occurred
-WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/nruest/bin/spark-3.0.0-bin-hadoop2.7/jars/spark-unsafe_2.12-3.0.0.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/spark/jars/spark-unsafe_2.12-3.1.1.jar) to constructor java.nio.DirectByteBuffer(long,int)
 WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-20/06/18 09:43:08 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+21/11/01 16:59:21 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-Spark context Web UI available at http://192.168.4.94:4040
-Spark context available as 'sc' (master = local[*], app id = local-1592487792942).
+Spark context Web UI available at http://9960b9083b5a:4040
+Spark context available as 'sc' (master = local[*], app id = local-1635785966430).
 Spark session available as 'spark'.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 3.0.1
+   /___/ .__/\_,_/_/ /_/\_\   version 3.1.1
       /_/
          
-Using Scala version 2.12.10 (OpenJDK 64-Bit Server VM, Java 11.0.7)
+Using Scala version 2.12.10 (OpenJDK 64-Bit Server VM, Java 11.0.13)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
@@ -86,21 +84,21 @@ It is also possible to start an interactive PySpark console. This requires speci
 To lauch an interactive PySpark console:
 
 ```
-docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/aut-0.90.3.zip --jars /aut/aut-0.90.3-fatjar.jar
+docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/aut-0.90.4.zip --jars /aut/aut-0.90.4-fatjar.jar
 ```
 
 Once the build finishes you should see:
 
 ```bash
-Python 3.7.3 (default, Dec 20 2019, 18:57:59) 
-[GCC 8.3.0] on linux
+Python 3.9.2 (default, Feb 28 2021, 17:03:44) 
+[GCC 10.2.1 20210110] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 WARNING: An illegal reflective access operation has occurred
-WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/spark/jars/spark-unsafe_2.12-3.0.0.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/spark/jars/spark-unsafe_2.12-3.1.1.jar) to constructor java.nio.DirectByteBuffer(long,int)
 WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-20/06/18 14:02:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+21/11/01 17:03:16 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
@@ -108,10 +106,12 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /__ / .__/\_,_/_/ /_/\_\   version 3.0.1
+   /__ / .__/\_,_/_/ /_/\_\   version 3.1.1
       /_/
 
-Using Python version 3.7.3 (default, Dec 20 2019 18:57:59)
+Using Python version 3.9.2 (default, Feb 28 2021 17:03:44)
+Spark context Web UI available at http://b338148843a7:4040
+Spark context available as 'sc' (master = local[*], app id = local-1635786198361).
 SparkSession available as 'spark'.
 >>> 
 ```
@@ -140,20 +140,20 @@ RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show
 Press Ctrl+D in order to execute the script. You should then see the following:
 
 ```
-+----------+--------------------+--------------------+--------------------+     
-|crawl_date|                 src|                dest|              anchor|
-+----------+--------------------+--------------------+--------------------+
-|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
-|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
-|  20060622|http://www.ppforu...|http://www.adobe....|                    |
-|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
-|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
-|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
-|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
-|  20060622|http://communist-...|http://www.calend...|                    |
-|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
-|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
-+----------+--------------------+--------------------+--------------------+
++----------+--------------------+--------------------+------+
+|crawl_date|                 src|                dest|anchor|
++----------+--------------------+--------------------+------+
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
++----------+--------------------+--------------------+------+
 only showing top 10 rows
 
 import io.archivesunleashed._
@@ -175,23 +175,21 @@ WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10
 You should then see the following:
 
 ```
-+----------+--------------------+--------------------+--------------------+     
-|crawl_date|                 src|                dest|              anchor|
-+----------+--------------------+--------------------+--------------------+
-|  20060622|http://www.gca.ca...|http://www.cleann...|                    |
-|  20060622|http://www.gca.ca...|http://www.quidno...|Quid Novis Intern...|
-|  20060622|http://www.ppforu...|http://www.adobe....|                    |
-|  20060622|http://www.ppforu...|mailto:kelly.cyr@...|           Kelly Cyr|
-|  20060622|http://www.ppforu...|http://www.renouf...|   Renouf Publishing|
-|  20060622|http://www.ppforu...|http://bayteksyst...|   bayteksystems.com|
-|  20060622|http://communist-...|http://www.calend...|  www.calendarix.com|
-|  20060622|http://communist-...|http://www.calend...|                    |
-|  20060622|http://communist-...|mailto:webmaster@...|webmaster@calenda...|
-|  20060622|http://www.ccsd.c...|http://www.ccsd.c...|                    |
-+----------+--------------------+--------------------+--------------------+
++----------+--------------------+--------------------+------+                   
+|crawl_date|                 src|                dest|anchor|
++----------+--------------------+--------------------+------+
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
+|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
++----------+--------------------+--------------------+------+
 only showing top 10 rows
-
->>> 
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
