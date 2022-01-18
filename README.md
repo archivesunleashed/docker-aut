@@ -53,7 +53,6 @@ You can add any Spark flags when starting the container, if you need too.
 docker run --rm -it \
   archivesunleashed/docker-aut:latest \
   /spark/bin/spark-shell \
-    --packages "io.archivesunleashed:aut:0.90.5-SNAPSHOT" \
     --conf spark.network.timeout=100000000 \
     --conf spark.executor.heartbeatInterval=6000s
 ```
