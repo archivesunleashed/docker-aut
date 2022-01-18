@@ -30,5 +30,5 @@ fi
 
 # Run command;
 # pass additional commands to the shell selected above.
-echo "Command: ${cmd} ${opts} $@"
+echo "Command: ${cmd} ${opts} $*"
 ${cmd} ${opts} $@
