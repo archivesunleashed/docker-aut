@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Default: run spark-shell (Scala):
+#
+# /spark/bin/spark-shell \
+#   --jars /aut/target/aut-<VERSION>-SNAPSHOT-fatjar.jar
+#
+# If the first argument is "pyspark", run pyspark instead:
+#
+# /spark/bin/pyspark \
+#   --py-files /aut/target/aut.zip \
+#   --jars /aut/target/aut-<VERSION>-SNAPSHOT-fatjar.jar
+#
+# Any additional arguments will be passed to the script to run as-is.
+
+# Select lastest JAR file automatically from /aut/target
+jarfile=$(ls /aut/target/aut-*-SNAPSHOT-fatjar.jar)
+
+# Compose command to run;
+# run spark by default;
+# if first argument is "pyspark", run pyspark instead.
+cmd="/spark/bin/spark-shell"
+opts="--jars ${jarfile}"
+if [[ $1 == "pyspark" ]]; then
+    echo "Starting pyspark..."
+    shift
+    cmd="/spark/bin/pyspark"
+    opts="--py-files /aut/target/aut.zip ${opts}"
+fi
+
+# Run command;
+# pass additional commands to the shell selected above.
+echo "Command: ${cmd} ${opts} $@"
+${cmd} ${opts} $@

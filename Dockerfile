@@ -26,4 +26,7 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --jars /aut/target/aut-0.90.5-SNAPSHOT-fatjar.jar
+# Copy pyspark starup script to /usr/local/bin/pyspark
+ADD files /
+
+ENTRYPOINT ["/usr/local/bin/aut-spark-shell"]

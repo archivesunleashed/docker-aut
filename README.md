@@ -24,15 +24,17 @@ Install the following dependencies:
 
 ### Docker Hub
 
-Make sure that Docker is running. Run the following command to launch the Apache Spark shell with `aut` available:
+Make sure that Docker is running. Run the following command to launch the Apache Spark shell:
 
 `docker run --rm -it archivesunleashed/docker-aut`
 
 If you want to mount your own data, replace `/path/to/your/data` in the following command with the directory where your ARC or WARC files are contained.
 
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut`
+`docker run --rm -it \
+  -v "/path/to/your/data:/data" \
+  archivesunleashed/docker-aut`
 
-You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut#example).
+You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut#example). See [PySpark](#pyspark), if you would like to use PySpark instead.
 
 ### Locally
 
@@ -45,13 +47,18 @@ You can also build this Docker image locally with the following steps:
 
 ### Overrides
 
-You can add any Spark flags to the build if you need too.
+You can add any Spark flags when starting the container, if you need too.
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.90.5-SNAPSHOT" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it \
+  archivesunleashed/docker-aut:latest \
+  /spark/bin/spark-shell \
+    --packages "io.archivesunleashed:aut:0.90.5-SNAPSHOT" \
+    --conf spark.network.timeout=100000000 \
+    --conf spark.executor.heartbeatInterval=6000s
 ```
 
-Once the build finishes, you should see:
+Once the container has started, you should see:
 
 ```bash
 WARNING: An illegal reflective access operation has occurred
@@ -72,28 +79,38 @@ Welcome to
     _\ \/ _ \/ _ `/ __/  '_/
    /___/ .__/\_,_/_/ /_/\_\   version 3.1.1
       /_/
-         
+
 Using Scala version 2.12.10 (OpenJDK 64-Bit Server VM, Java 11.0.13)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
-scala> 
+scala>
 ```
 
 ### PySpark
 
-It is also possible to start an interactive PySpark console. This requires specifying Python bindings and the `aut` package, both of which are included in the Docker image under `/aut/target`.
+It is also possible to start an interactive PySpark console.
+Simply start the container with `"pyspark"`:
 
-To lauch an interactive PySpark console:
+```shell
+docker run --rm -it \
+  archivesunleashed/docker-aut \
+  pyspark
+```
+
+You can still specify overrides to the PySpark console:
 
 ```
-docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.90.5-SNAPSHOT-fatjar.jar
+docker run --rm -it \
+  archivesunleashed/docker-aut \
+  pyspark \
+    --conf spark.network.timeout=100000000
 ```
 
-Once the build finishes you should see:
+Once the container has started, you should see:
 
 ```bash
-Python 3.9.2 (default, Feb 28 2021, 17:03:44) 
+Python 3.9.2 (default, Feb 28 2021, 17:03:44)
 [GCC 10.2.1 20210110] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 WARNING: An illegal reflective access operation has occurred
@@ -116,11 +133,10 @@ Using Python version 3.9.2 (default, Feb 28 2021 17:03:44)
 Spark context Web UI available at http://d03127085be4:4040
 Spark context available as 'sc' (master = local[*], app id = local-1635788517329).
 SparkSession available as 'spark'.
->>> 
+>>>
 ```
 
 ## Example
-
 
 ### Spark Shell (Scala)
 
@@ -178,7 +194,7 @@ WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10
 You should then see the following:
 
 ```
-+----------+--------------------+--------------------+------+                   
++----------+--------------------+--------------------+------+
 |crawl_date|                 src|                dest|anchor|
 +----------+--------------------+--------------------+------+
 |  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
