@@ -1,6 +1,4 @@
 # docker-aut
-[![Docker Stars](https://img.shields.io/docker/stars/archivesunleashed/docker-aut.svg)](https://hub.docker.com/r/archivesunleashed/docker-aut/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/archivesunleashed/docker-aut.svg)](https://hub.docker.com/r/archivesunleashed/docker-aut/)
 [![LICENSE](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](./LICENSE)
 [![Contribution Guidelines](http://img.shields.io/badge/CONTRIBUTING-Guidelines-blue.svg)](./CONTRIBUTING.md)
 
@@ -21,18 +19,6 @@ Install the following dependencies:
 1. [Docker](https://www.docker.com/get-docker)
 
 ## Use
-
-### Docker Hub
-
-Make sure that Docker is running. Run the following command to launch the Apache Spark shell with `aut` available:
-
-`docker run --rm -it archivesunleashed/docker-aut`
-
-If you want to mount your own data, replace `/path/to/your/data` in the following command with the directory where your ARC or WARC files are contained.
-
-`docker run --rm -it -v "/path/to/your/data:/data" archivesunleashed/docker-aut`
-
-You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut#example).
 
 ### Locally
 
