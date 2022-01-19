@@ -20,20 +20,6 @@ Install the following dependencies:
 
 ## Use
 
-### Build and Run
-
-Make sure that Docker is running. Run the following command to launch the Apache Spark shell:
-
-`docker run --rm -it archivesunleashed/docker-aut`
-
-If you want to mount your own data, replace `/path/to/your/data` in the following command with the directory where your ARC or WARC files are contained.
-
-`docker run --rm -it \
-  -v "/path/to/your/data:/data" \
-  archivesunleashed/docker-aut`
-
-You will be brought to a Spark shell. Skip ahead to the [example below](https://github.com/archivesunleashed/docker-aut#example). See [PySpark](#pyspark), if you would like to use PySpark instead.
-
 ### Locally
 
 You can also build this Docker image locally with the following steps:
@@ -48,9 +34,7 @@ You can also build this Docker image locally with the following steps:
 You can add any Spark flags when starting the container, if you need too.
 
 ```
-docker run --rm -it \
-  archivesunleashed/docker-aut:latest \
-  /spark/bin/spark-shell \
+docker run --rm -it aut \
     --conf spark.network.timeout=100000000 \
     --conf spark.executor.heartbeatInterval=6000s
 ```
@@ -90,17 +74,13 @@ It is also possible to start an interactive PySpark console.
 Simply start the container with `"pyspark"`:
 
 ```shell
-docker run --rm -it \
-  archivesunleashed/docker-aut \
-  pyspark
+docker run --rm -it aut pyspark
 ```
 
 You can still specify overrides to the PySpark console:
 
 ```
-docker run --rm -it \
-  archivesunleashed/docker-aut \
-  pyspark \
+docker run --rm -it aut pyspark \
     --conf spark.network.timeout=100000000
 ```
 
@@ -156,7 +136,7 @@ RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show
 Press Ctrl+D in order to execute the script. You should then see the following:
 
 ```
-+--------------+--------------------+--------------------+------+               
++--------------+--------------------+--------------------+------+
 |    crawl_date|                 src|                dest|anchor|
 +--------------+--------------------+--------------------+------+
 |20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
@@ -189,7 +169,7 @@ WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10
 You should then see the following:
 
 ```
-+--------------+--------------------+--------------------+------+               
++--------------+--------------------+--------------------+------+
 |    crawl_date|                 src|                dest|anchor|
 +--------------+--------------------+--------------------+------+
 |20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
