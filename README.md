@@ -20,9 +20,9 @@ Install the following dependencies:
 
 ## Use
 
-### Locally
+### Build and Run
 
-You can also build this Docker image locally with the following steps:
+You can build and run this Docker image locally with the following steps:
 
 1. `git clone https://github.com/archivesunleashed/docker-aut.git`
 2. `cd docker-aut`
@@ -34,7 +34,7 @@ You can also build this Docker image locally with the following steps:
 You can add any Spark flags to the build if you need too.
 
 ```
-docker run --rm -it archivesunleashed/docker-aut:latest /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.90.5-SNAPSHOT" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it aut /spark/bin/spark-shell --packages "io.archivesunleashed:aut:0.91.1-SNAPSHOT" --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
@@ -73,7 +73,7 @@ It is also possible to start an interactive PySpark console. This requires speci
 To lauch an interactive PySpark console:
 
 ```
-docker run --rm -it archivesunleashed/docker-aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.90.5-SNAPSHOT-fatjar.jar
+docker run --rm -it aut /spark/bin/pyspark --py-files /aut/target/aut.zip --jars /aut/target/aut-0.91.1-SNAPSHOT-fatjar.jar
 ```
 
 Once the build finishes you should see:
@@ -129,23 +129,21 @@ RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show
 Press Ctrl+D in order to execute the script. You should then see the following:
 
 ```
-+----------+--------------------+--------------------+------+
-|crawl_date|                 src|                dest|anchor|
-+----------+--------------------+--------------------+------+
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-+----------+--------------------+--------------------+------+
++--------------+--------------------+--------------------+------+               
+|    crawl_date|                 src|                dest|anchor|
++--------------+--------------------+--------------------+------+
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
++--------------+--------------------+--------------------+------+
 only showing top 10 rows
-
-import io.archivesunleashed._
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
@@ -164,20 +162,20 @@ WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10
 You should then see the following:
 
 ```
-+----------+--------------------+--------------------+------+                   
-|crawl_date|                 src|                dest|anchor|
-+----------+--------------------+--------------------+------+
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-+----------+--------------------+--------------------+------+
++--------------+--------------------+--------------------+------+               
+|    crawl_date|                 src|                dest|anchor|
++--------------+--------------------+--------------------+------+
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
++--------------+--------------------+--------------------+------+
 only showing top 10 rows
 ```
 
