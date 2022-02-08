@@ -1,6 +1,4 @@
 # docker-aut
-[![Docker Stars](https://img.shields.io/docker/stars/archivesunleashed/docker-aut.svg)](https://hub.docker.com/r/archivesunleashed/docker-aut/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/archivesunleashed/docker-aut.svg)](https://hub.docker.com/r/archivesunleashed/docker-aut/)
 [![LICENSE](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](./LICENSE)
 [![Contribution Guidelines](http://img.shields.io/badge/CONTRIBUTING-Guidelines-blue.svg)](./CONTRIBUTING.md)
 
@@ -22,7 +20,7 @@ Install the following dependencies:
 
 ## Use
 
-### Docker Hub
+### Build and Run
 
 Make sure that Docker is running. Run the following command to launch the Apache Spark shell:
 
@@ -158,23 +156,21 @@ RecordLoader.loadArchives("/aut-resources/Sample-Data/*.gz", sc).webgraph().show
 Press Ctrl+D in order to execute the script. You should then see the following:
 
 ```
-+----------+--------------------+--------------------+------+
-|crawl_date|                 src|                dest|anchor|
-+----------+--------------------+--------------------+------+
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-+----------+--------------------+--------------------+------+
++--------------+--------------------+--------------------+------+               
+|    crawl_date|                 src|                dest|anchor|
++--------------+--------------------+--------------------+------+
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
++--------------+--------------------+--------------------+------+
 only showing top 10 rows
-
-import io.archivesunleashed._
 ```
 
 In this case, things are working! Try substituting your own data (mounted using the command above).
@@ -193,20 +189,20 @@ WebArchive(sc, sqlContext, "/aut-resources/Sample-Data/*.gz").webgraph().show(10
 You should then see the following:
 
 ```
-+----------+--------------------+--------------------+------+
-|crawl_date|                 src|                dest|anchor|
-+----------+--------------------+--------------------+------+
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-|  20060622|http://www.gca.ca...|http://www.gca.ca...|      |
-+----------+--------------------+--------------------+------+
++--------------+--------------------+--------------------+------+               
+|    crawl_date|                 src|                dest|anchor|
++--------------+--------------------+--------------------+------+
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
+|20060622205609|http://www.gca.ca...|http://www.gca.ca...|      |
++--------------+--------------------+--------------------+------+
 only showing top 10 rows
 ```
 
