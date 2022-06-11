@@ -16,8 +16,8 @@ RUN git clone https://github.com/archivesunleashed/aut-resources.git
 # Archives Unleashed Toolkit
 RUN mkdir /aut \
     && cd /aut \
-    && wget -q "https://github.com/archivesunleashed/aut/releases/download/aut-0.91.0/aut-0.91.0-fatjar.jar" \
-    && wget -q "https://github.com/archivesunleashed/aut/releases/download/aut-0.91.0/aut-0.91.0.zip"
+    && wget -q "https://github.com/archivesunleashed/aut/releases/download/aut-1.0.0/aut-1.0.0-fatjar.jar" \
+    && wget -q "https://github.com/archivesunleashed/aut/releases/download/aut-1.0.0/aut-1.0.0.zip"
 
 # Spark shell
 RUN mkdir /spark \
@@ -26,4 +26,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.7.tgz"
 
-CMD /spark/bin/spark-shell --jars /aut/aut-0.91.0-fatjar.jar
+CMD /spark/bin/spark-shell --jars /aut/aut-1.0.0-fatjar.jar
