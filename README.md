@@ -31,7 +31,7 @@ You can build and run this Docker image locally with the following steps:
 You can add any Spark flags to the build if you need too.
 
 ```
-docker run --rm -it aut /spark/bin/spark-shell --jars /aut/aut-1.0.0-fatjar.jar --conf spark.network.timeout=100000000 --conf spark.executor.heartbeatInterval=6000s
+docker run --rm -it aut /spark/bin/spark-shell --jars /aut/aut-1.1.0-fatjar.jar --conf spark.network.timeout=1.1.00000 --conf spark.executor.heartbeatInterval=6000s
 ```
 
 Once the build finishes, you should see:
@@ -70,7 +70,7 @@ It is also possible to start an interactive PySpark console. This requires speci
 To lauch an interactive PySpark console:
 
 ```
-docker run --rm -it aut /spark/bin/pyspark --py-files /aut/aut-1.0.0.zip --jars /aut/aut-1.0.0-fatjar.jar
+docker run --rm -it aut /spark/bin/pyspark --py-files /aut/aut-1.1.0.zip --jars /aut/aut-1.1.0-fatjar.jar
 ```
 
 Once the build finishes you should see:
