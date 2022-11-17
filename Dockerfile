@@ -26,4 +26,4 @@ RUN mkdir /spark \
     && tar -xf "/tmp/spark-$SPARK_VERSION-bin-hadoop2.tgz" -C /spark --strip-components=1 \
     && rm "/tmp/spark-$SPARK_VERSION-bin-hadoop2.tgz"
 
-CMD /spark/bin/spark-shell --jars /aut/target/aut-1.1.2-SNAPSHOT-fatjar.jar
+CMD /spark/bin/spark-shell --jars /aut/target/aut-1.2.1-SNAPSHOT-fatjar.jar
